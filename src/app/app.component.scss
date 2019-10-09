@@ -1,0 +1,41 @@
+.main {
+    padding: 16px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+
+    div.brp, div.points {
+        display: inline-block;
+        width: 40%;
+    }
+    
+    div.brp, input.word, div.points {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 16px 0;
+    }
+
+    div.meaning {
+        margin: 16px;
+        font-size: 0.8rem;
+    }
+
+    button.action {
+        width: 15%;
+        font-size: 1.5rem;  
+    }
+        
+    input.word {
+        width: 70%;
+    }
+
+    .success {
+        color: #0fe21d;
+    }
+
+    .failure {
+        color: #ee7d61;
+    }
+}
