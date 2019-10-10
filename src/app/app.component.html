@@ -1,9 +1,26 @@
 <div class="main">
   <div class="points" [textContent]="points"></div>
   <div class="brp" [textContent]="brp"></div>
-  <div>
-    <button class="action" (click)="clear()">✘</button><input class="word" [(ngModel)]="value" (focus)="clear()" (keydown.enter)="attempt()" /><button class="action" (click)="attempt()">✔</button>
+  <div class="actions">
+    <div class="action clear" (click)="clear()"><span>✘</span></div>
+    <div class="word">
+      <input
+        [(ngModel)]="value"
+        (focus)="clear()"
+        (keydown.enter)="attempt()"
+      />
+    </div>
+    <div class="action attempt" (click)="attempt()"><span>✔</span></div>
   </div>
-  <h4 [class.success]="lastResult" [class.failure]="!lastResult" [textContent]="lastWord"></h4>
-  <div class="meaning"  [class.success]="lastResult" [class.failure]="!lastResult" [textContent]="lastMeaning"></div>
+  <h4
+    [class.success]="lastResult"
+    [class.failure]="!lastResult"
+    [textContent]="lastWord"
+  ></h4>
+  <div
+    class="meaning"
+    [class.success]="lastResult"
+    [class.failure]="!lastResult"
+    [textContent]="lastMeaning"
+  ></div>
 </div>
