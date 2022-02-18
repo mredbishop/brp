@@ -1,5 +1,5 @@
-import Game from '../Game';
+import BrpGame from '../BrpGame';
 
-export default function Brp() {
-    return <Game initialLetters={['B', 'R', 'P']} />;
-}
+const Brp = () => <BrpGame brp={['B', 'R', 'P']} background="primaryBackground" />;
+
+export default Brp;

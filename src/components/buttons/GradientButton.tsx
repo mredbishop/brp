@@ -11,10 +11,10 @@ type Props = {
     text: string;
 } & ButtonProps;
 
-export function GradientButton({ text, color = 'primary', ...rest }: Props) {
-    return (
-        <StyledButton color={color} {...rest}>
-            <Typography variant="button">{text}</Typography>
-        </StyledButton>
-    );
-}
+const GradientButton = ({ text, color = 'primary', ...rest }: Props) => (
+    <StyledButton color={color} {...rest}>
+        <Typography variant="button">{text}</Typography>
+    </StyledButton>
+);
+
+export default GradientButton;

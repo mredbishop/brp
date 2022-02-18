@@ -12,13 +12,10 @@ declare module '@mui/material/styles' {
       warning: SimplePaletteColorOptions;
       success: SimplePaletteColorOptions;
       info: SimplePaletteColorOptions;
-      campaigns: SimplePaletteColorOptions;
-      audiences: SimplePaletteColorOptions;
-      templates: SimplePaletteColorOptions;
     };
     glassCards: {
-      background: string;
-      boxShadow: string;
+      primaryBackground: string;
+      secondaryBackground: string;
     };
     snackbar: {
       variantSuccess: { background: string; color: string };
@@ -38,14 +35,11 @@ declare module '@mui/material/styles' {
       warning: SimplePaletteColorOptions;
       success: SimplePaletteColorOptions;
       info: SimplePaletteColorOptions;
-      campaigns: SimplePaletteColorOptions;
-      audiences: SimplePaletteColorOptions;
-      templates: SimplePaletteColorOptions;
     };
 
     glassCards: {
-      background: string;
-      boxShadow: string;
+        primaryBackground: string;
+        secondaryBackground: string;
     };
     snackbar: {
       variantSuccess: { background: string; color: string };
@@ -58,66 +52,56 @@ declare module '@mui/material/styles' {
 
 const gradients = {
     secondary: {
-        main: 'linear-gradient(117deg, rgba(187,69,233,1) 0%, rgba(233,69,129,1) 100%)',
+        main: 'linear-gradient(117deg, #440117 0%, #5a011f 100%)',
         contrastText: '#fff'
     },
-    campaigns: {
-        main: 'linear-gradient(322deg, rgb(243 104 51) 0%, rgb(168 61 235) 100%)',
-        contrastText: '#fffff'
-    },
-    audiences: {
-        main: 'linear-gradient(322deg, rgb(63 51 243) 0%, rgb(168 61 235) 100%)',
-        contrastText: '#ffffff'
-    },
-    templates: {
-        main: 'linear-gradient(117deg, rgba(69,100,233,1) 0%, rgb(69 233 131) 100%)',
-        contrastText: '#ffffff'
-    },
     primary: {
-        main: 'linear-gradient(117deg, rgb(132 69 233) 0%, rgba(69,171,233,1) 100%)',
+        main: 'linear-gradient(117deg, #2e0019 0%, #cc0070 100%)',
         contrastText: '#fff'
     },
     error: {
-        main: 'linear-gradient(302deg, rgb(241 22 172) 0%, rgb(235 44 13) 100%)',
+        main: 'linear-gradient(302deg, #490022 0%, #920044 100%)',
         contrastText: '#fff'
     },
     warning: {
-        main: 'linear-gradient(117deg, rgba(69,100,233,1) 0%, rgba(69,171,233,1) 100%)',
+        main: 'linear-gradient(117deg, #6700ac 0%, #360b00 100%)',
         contrastText: '#fff'
     },
     success: {
-        main: 'linear-gradient(302deg, rgb(35 175 11) 0%, rgb(14 168 203) 100%)',
+        main: 'linear-gradient(302deg, #007e06 0%, #003a03 100%)',
         contrastText: '#fff'
     },
     info: {
-        main: 'linear-gradient(117deg, rgb(148 184 211) 0%, rgb(66 104 126) 100%)',
+        main: 'linear-gradient(117deg, #94b8d3 0%, #42687e 100%)',
         contrastText: '#fff'
     }
 };
 
 const theme = responsiveFontSizes(createTheme({
+    typography: {
+        fontFamily: 'Righteous,cursive'
+    },
     gradients,
     glassCards: {
-        background:
-      'linear-gradient(219deg, rgb(215 39 210 / 5%) 0%, rgb(23 69 209 / 15%) 100%)',
-        boxShadow: 'inset 0px 0px 12px 1px rgb(228 101 237 / 3%)'
+        primaryBackground: 'linear-gradient(210deg, #0063e6 0%, #000c1b 80%, #000c1b 100%)',
+        secondaryBackground: 'linear-gradient(210deg, #d10062 0%, #1a000c 80%, #000c1b 100%)'
     },
     palette: {
         mode: 'dark',
         background: {
-            default: '#03103b',
-            paper: '#021041'
+            default: '#000000',
+            paper: '#000a18'
         },
         secondary: {
             contrastText: '#fff',
-            main: '#f10989'
+            main: '#002552'
         },
         primary: {
-            contrastText: '#fff',
-            main: '#449de9'
+            contrastText: '#000000',
+            main: '#d40075'
         },
         text: {
-            secondary: 'rgba(245, 245, 245, 0.8)'
+            secondary: '#dadada'
         }
     },
     shape: {
