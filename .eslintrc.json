@@ -16,8 +16,10 @@
     "rules": {
         "consistent-return": "off",
         "no-unused-vars": "off",
+        "no-plusplus":"off",
         "indent": ["error", 4],
         "comma-dangle": ["error", "never"],
+        "no-underscore-dangle": "off",
         "quotes": ["error", "single"],
         "jsx-quotes": ["error", "prefer-double"],
         "react/jsx-filename-extension": "off",
@@ -41,7 +43,7 @@
         "max-len": [
             "error",
             {
-                "code": 100,
+                "code": 140,
                 "ignoreComments": true,
                 "ignoreStrings": true,
                 "ignoreTemplateLiterals": true,

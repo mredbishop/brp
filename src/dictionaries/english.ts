@@ -78067,6 +78067,7 @@ const english = [
     'undaunted',
     'undauntedly',
     'unde',
+    'undead',
     'undeceive',
     'undeceived',
     'undeceives',

@@ -1,11 +1,9 @@
 import theme from '../../Theme';
-import Brp from './Brp';
+import { GameMode } from './GameMode';
 
-type nextBrp = (lastBrp: Brp, lastWord: string) => Brp;
 type BrpGameConfig = {
-    brp: Brp,
-    background: keyof typeof theme.glassCards,
-    nextBrp?: nextBrp,
+    gameMode: GameMode,
+    background: keyof typeof theme.glassCards
 };
 
 export default BrpGameConfig;
