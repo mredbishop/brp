@@ -1,0 +1,15 @@
+{
+    "background_color": "black",
+    "description": "A word game for people with 60 seconds to spare each day.",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "logo.svg",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "name": "Brp Word Game",
+    "short_name": "BRP",
+    "start_url": "/"
+}

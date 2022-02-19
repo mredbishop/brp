@@ -1,5 +1,5 @@
 import BrpGame from '../BrpGame';
 
-const Brp = () => <BrpGame brp={['B', 'R', 'P']} background="primaryBackground" />;
+const Brp = () => <BrpGame gameMode="brp" background="primaryBackground" />;
 
 export default Brp;

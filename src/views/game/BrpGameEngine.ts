@@ -1,6 +1,6 @@
 import english from '../../dictionaries/english';
 import Brp from './Brp';
-import { BrpLetter, brpLetters } from './BrpLetter';
+import BrpLetter, { brpLetters } from './BrpLetter';
 import { GameMode } from './GameMode';
 
 export default class BrpGameEngine {
@@ -22,8 +22,8 @@ export default class BrpGameEngine {
         this.gameMode = gameMode;
         const randomLetter = (level = 10) => {
             const letters = level >= 10
-                ? Object.keys(brpLetters)
-                : Object.keys(brpLetters)
+                ? Object.keys(brpLetters) as Array<BrpLetter>
+                : (Object.keys(brpLetters) as Array<BrpLetter>)
                     .map((letter) => ({ letter, score: brpLetters[letter as BrpLetter] }))
                     .filter((letterScore) => letterScore.score <= level)
                     .map((letterScore) => letterScore.letter);

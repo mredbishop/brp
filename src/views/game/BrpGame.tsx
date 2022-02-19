@@ -69,7 +69,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         flex: 1,
         width: '28vw',
         height: '28vw',
-        borderRadius: '6px',
+        borderRadius: theme.borders.radius,
         border: '1px solid #fff',
         boxShadow: '0px 0px 4px 3px #ffffff55'
     };
@@ -86,9 +86,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         fontWeight: 600,
         fontFamily: theme.typography.fontFamily,
         letterSpacing: '8px',
-        borderRadius: '6px',
+        borderRadius: theme.borders.radius,
         boxShadow: '0px 0px 4px 3px #ffffff55',
-        marginTop: '24px'
+        marginTop: theme.margins.standard
     };
 
     return (

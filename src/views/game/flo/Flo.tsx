@@ -7,6 +7,6 @@ const Flo = () => {
         log('nextBrp', { brp, lastWord });
         return ['B', 'R', 'P'];
     };
-    return <BrpGame brp={['F', 'L', 'O']} background="secondaryBackground" nextBrp={nextBrp} />;
+    return <BrpGame gameMode="flo" background="secondaryBackground" />;
 };
 export default Flo;

@@ -4,7 +4,13 @@ import {
 
 declare module '@mui/material/styles' {
   // eslint-disable-next-line no-unused-vars
-  interface Theme {
+ interface Theme {
+    margins: {
+        standard: string
+    },
+    borders :{
+        radius: string;
+    }
     gradients: {
       secondary: SimplePaletteColorOptions;
       primary: SimplePaletteColorOptions;
@@ -28,6 +34,12 @@ declare module '@mui/material/styles' {
 
   // eslint-disable-next-line no-unused-vars
   interface ThemeOptions {
+    margins: {
+        standard: string
+    },
+    borders :{
+        radius: string;
+    }
     gradients: {
       secondary: SimplePaletteColorOptions;
       primary: SimplePaletteColorOptions;
@@ -78,19 +90,25 @@ const gradients = {
 };
 
 const theme = responsiveFontSizes(createTheme({
+    margins: {
+        standard: '2rem'
+    },
+    borders: {
+        radius: '6px'
+    },
     typography: {
         fontFamily: 'Righteous,cursive'
     },
     gradients,
     glassCards: {
-        primaryBackground: 'linear-gradient(210deg, #0063e6 0%, #000c1b 80%, #000c1b 100%)',
-        secondaryBackground: 'linear-gradient(210deg, #d10062 0%, #1a000c 80%, #000c1b 100%)'
+        primaryBackground: 'linear-gradient(210deg, #0063e6 0%, #00193a 80%, #000c1b 100%)',
+        secondaryBackground: 'linear-gradient(210deg, #d10062 0%, #2b0014 80%, #000c1b 100%)'
     },
     palette: {
         mode: 'dark',
         background: {
-            default: '#000000',
-            paper: '#000a18'
+            default: '#000c1b',
+            paper: '#00193a'
         },
         secondary: {
             contrastText: '#fff',
@@ -98,7 +116,7 @@ const theme = responsiveFontSizes(createTheme({
         },
         primary: {
             contrastText: '#000000',
-            main: '#d40075'
+            main: '#d10062'
         },
         text: {
             secondary: '#dadada'

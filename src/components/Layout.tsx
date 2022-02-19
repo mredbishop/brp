@@ -3,13 +3,13 @@ import FloIcon from '@mui/icons-material/RocketLaunchTwoTone';
 import BrpIcon from '@mui/icons-material/RocketTwoTone';
 import {
     BottomNavigation,
-    BottomNavigationAction,
-    Container
+    BottomNavigationAction
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useSnackbar } from 'notistack';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import theme from '../Theme';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -44,11 +44,22 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                     height: '100%',
                     flexGrow: 1,
                     width: '100%',
-                    padding: '24px'
+                    padding: theme.margins.standard,
+                    display: 'flex',
+                    flexDirection: 'column'
                 }}
             >
-                <Container>
-                    <BottomNavigation sx={{ width: '100%', mb: '24px', borderRadius: '6px' }} value={value} onChange={handleChange}>
+                <Box sx={{ flexGrow: 1 }}>
+                    {children}
+                </Box>
+                <Box>
+                    <BottomNavigation
+                        sx={{
+                            width: '100%', mt: theme.margins.standard, borderRadius: theme.borders.radius
+                        }}
+                        value={value}
+                        onChange={handleChange}
+                    >
                         <BottomNavigationAction
                             component={Link}
                             to="/brp"
@@ -71,8 +82,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                             icon={<FloIcon />}
                         />
                     </BottomNavigation>
-                </Container>
-                {children}
+                </Box>
             </Box>
         </Box>
     );

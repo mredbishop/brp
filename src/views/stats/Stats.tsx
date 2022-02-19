@@ -1,10 +1,10 @@
 import {
-    Box, Container, Typography
+    Box, Typography
 } from '@mui/material';
 import GlassCard from '../../components/cards/GlassCard';
 
 const Stats = () => (
-    <Container>
+    <Box>
         <GlassCard>
             <Box sx={{ p: 3 }}>
                 <Typography>
@@ -13,7 +13,7 @@ const Stats = () => (
                 </Typography>
             </Box>
         </GlassCard>
-    </Container>
+    </Box>
 );
 
 export default Stats;
