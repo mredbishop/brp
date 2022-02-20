@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">brp</string>
+    <string name="title_activity_main">brp</string>
+    <string name="package_name">com.playbrp</string>
+    <string name="custom_url_scheme">com.playbrp</string>
+</resources>
