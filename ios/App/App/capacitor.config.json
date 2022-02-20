@@ -1,0 +1,6 @@
+{
+	"appId": "com.playbrp",
+	"appName": "brp",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

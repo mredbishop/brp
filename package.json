@@ -5,11 +5,15 @@
         "playground": "ts-node playground/playground.ts",
         "start": "vite",
         "build": "tsc && vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "mobile": "tsc && vite build && npx cap sync; npx cap sync @capacitor-community/electron"
     },
     "dependencies": {
+        "@capacitor-community/electron": "^4.1.0",
         "@capacitor/android": "^3.4.1",
         "@capacitor/core": "^3.4.1",
+        "@capacitor/ios": "^3.4.1",
+        "@capacitor/storage": "^1.2.4",
         "@emotion/react": "^11.7.1",
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.3.1",
