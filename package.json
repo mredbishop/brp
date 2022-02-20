@@ -6,7 +6,8 @@
         "start": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "mobile": "tsc && vite build && npx cap sync; npx cap sync @capacitor-community/electron"
+        "icons": "npx capacitor-resources",
+        "mobile": "tsc && vite build && npx cap sync && npx cap sync @capacitor-community/electron && cd android && ./gradlew assembleDebug && cd ../.."
     },
     "dependencies": {
         "@capacitor-community/electron": "^4.1.0",
