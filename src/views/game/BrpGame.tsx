@@ -11,7 +11,7 @@ import BrpGameEngine from './BrpGameEngine';
 import LetterCard from './LetterCard';
 
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
-    const [brpGameEngine, setGameEngine] = useState(new BrpGameEngine({ gameMode, maxLevel: 2 }));
+    const [brpGameState, setGameState] = useState(BrpGameEngine.startGame({ gameMode }));
     const [guess, setGuess] = useState('');
 
     const { enqueueSnackbar } = useSnackbar();
@@ -27,8 +27,8 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         }
 
         setGuess(thisGuess);
-        brpGameEngine.guess = thisGuess;
-        setGameEngine(brpGameEngine);
+        brpGameState.lastGuess = thisGuess;
+        setGameState(brpGameState);
 
         if (modified) {
             requestAnimationFrame(() => {
@@ -37,7 +37,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
             });
         }
 
-        log(JSON.stringify(brpGameEngine));
+        log(JSON.stringify(brpGameState));
     };
 
     const keyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -50,18 +50,18 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         const isEnter = /(?:Enter)/i.test(e.key);
         if (!isEnter) return;
 
-        const result = brpGameEngine.submitGuess();
-        setGameEngine(brpGameEngine);
-        if (result.ok) {
-            if (result.points !== brpGameEngine.points) {
-                enqueueSnackbar(`Nice, ${result.points} points, you now have ${brpGameEngine.points} total`, { variant: 'success' });
+        const newState = BrpGameEngine.submitGuess(brpGameState);
+        setGameState(newState);
+        if (newState.lastGuessOk) {
+            if (newState.points !== brpGameState.points) {
+                enqueueSnackbar(`Nice, ${newState.points} points, you now have ${brpGameState.points} total`, { variant: 'success' });
             } else {
-                enqueueSnackbar(`Nice, ${result.points} points!`, { variant: 'success' });
+                enqueueSnackbar(`Nice, ${newState.points} points!`, { variant: 'success' });
             }
             setGuess('');
         } else {
-            if (result.clear) setGuess('');
-            enqueueSnackbar(`${result.message}`, { variant: 'info' });
+            setGuess('');
+            enqueueSnackbar(`${newState.lastGuessMessage}`, { variant: 'info' });
         }
     };
 
@@ -96,13 +96,13 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Box sx={letterStyle}>
-                        <LetterCard brpLetter={brpGameEngine.brp[0]} />
+                        <LetterCard brpLetter={brpGameState.brp[0]} />
                     </Box>
                     <Box sx={{ ...letterStyle, mr: 3, ml: 3 }}>
-                        <LetterCard brpLetter={brpGameEngine.brp[1]} />
+                        <LetterCard brpLetter={brpGameState.brp[1]} />
                     </Box>
                     <Box sx={letterStyle}>
-                        <LetterCard brpLetter={brpGameEngine.brp[2]} />
+                        <LetterCard brpLetter={brpGameState.brp[2]} />
                     </Box>
                 </Box>
             </Box>

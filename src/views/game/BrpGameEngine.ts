@@ -1,84 +1,89 @@
 import english from '../../dictionaries/english';
 import Brp from './Brp';
+import BrpGameState from './BrpGameState';
 import BrpLetter, { brpLetters } from './BrpLetter';
+import Brps from './Brps';
 import { GameMode } from './GameMode';
 
 export default class BrpGameEngine {
-    private _brp: Brp;
+    public static startGame({ gameMode }: { gameMode: GameMode }) {
+        const index = Math.ceil(Math.random() * 2000);
+        const brp = Brps.all[index][0];
 
-    points = 0;
-
-    public get brp() {
-        return this._brp;
-    }
-
-    private answers: Array<{ word: string, brp: Brp, points: number }> = [];
-
-    public guess?: string;
-
-    public readonly gameMode: string;
-
-    constructor({ gameMode, maxLevel }: { gameMode: GameMode, maxLevel: number }) {
-        this.gameMode = gameMode;
-        const randomLetter = (level = 10) => {
-            const letters = level >= 10
-                ? Object.keys(brpLetters) as Array<BrpLetter>
-                : (Object.keys(brpLetters) as Array<BrpLetter>)
-                    .map((letter) => ({ letter, score: brpLetters[letter as BrpLetter] }))
-                    .filter((letterScore) => letterScore.score <= level)
-                    .map((letterScore) => letterScore.letter);
-            return letters[Math.floor(Math.random() * letters.length)];
+        const state: BrpGameState = {
+            gameMode, brp, answers: [], points: 0, guesses: 0
         };
-        this._brp = [randomLetter(maxLevel), randomLetter(maxLevel), randomLetter(maxLevel)];
+
+        return state;
     }
 
-    public nextBrp?: () => Brp;
+    public static submitGuess({
+        gameMode, brp, answers, points, lastGuess, guesses
+    }: BrpGameState): BrpGameState {
+        const newState: BrpGameState = {
+            gameMode, brp, answers, points, lastGuess, guesses
+        };
 
-    public submitGuess(): { ok: false, clear: boolean, message: string } | { ok: true, points: number } {
-        const ok = false;
-        const clear = true;
         // Check you used enough the letters
-        if (!this.guess || this.guess.length < 3) return { ok, clear, message: 'Not enough letters' };
+        if (!newState.lastGuess || newState.lastGuess.length < 3) {
+            newState.lastGuessOk = false;
+            newState.lastGuessMessage = 'Not enough letters';
+            return newState;
+        }
 
-        if (this.answers.some((a) => a.word === this.guess)) return { ok, clear, message: `You already used ${this.guess}` };
+        if (newState.answers.some((a) => a.word === newState.lastGuess)) {
+            newState.lastGuessOk = false;
+            newState.lastGuessMessage = `You already used ${newState.lastGuess}`;
+            return newState;
+        }
 
-        const has1 = this.guess.indexOf(this._brp[0]) > -1;
-        const has2 = this.guess.indexOf(this._brp[1]) > -1;
-        const has3 = this.guess.indexOf(this._brp[2]) > -1;
+        let message: string | undefined;
+        const has1 = newState.lastGuess.indexOf(newState.brp[0]) > -1;
+        const has2 = newState.lastGuess.indexOf(newState.brp[1]) > -1;
+        const has3 = newState.lastGuess.indexOf(newState.brp[2]) > -1;
         // Check you used the right letters
-        if (!has1 && has2 && has3) return { ok, clear, message: `${this._brp[0]} was not used` };
-        if (has1 && !has2 && has3) return { ok, clear, message: `${this._brp[1]} was not used` };
-        if (has1 && has2 && !has3) return { ok, clear, message: `${this._brp[2]} was not used` };
-        if (!has1 && !has2 && has3) return { ok, clear, message: `${this._brp[0]} and ${this._brp[1]} were not used` };
-        if (!has1 && has2 && !has3) return { ok, clear, message: `${this._brp[0]} and ${this._brp[2]} were not used` };
-        if (has1 && !has2 && !has3) return { ok, clear, message: `${this._brp[1]} and ${this._brp[2]} were not used` };
-        if (!has1 && !has2 && !has3) return { ok, clear, message: `${this._brp[0]}, ${this._brp[1]} and ${this._brp[2]} were not used` };
+        if (!has1 && has2 && has3) message = `${newState.brp[0]} was not used`;
+        else if (has1 && !has2 && has3) message = `${newState.brp[1]} was not used`;
+        else if (has1 && has2 && !has3) message = `${newState.brp[2]} was not used`;
+        else if (!has1 && !has2 && has3) message = `${newState.brp[0]} and ${newState.brp[1]} were not used`;
+        else if (!has1 && has2 && !has3) message = `${newState.brp[0]} and ${newState.brp[2]} were not used`;
+        else if (has1 && !has2 && !has3) message = `${newState.brp[1]} and ${newState.brp[2]} were not used`;
+        else if (!has1 && !has2 && !has3) message = `${newState.brp[0]}, ${newState.brp[1]} and ${newState.brp[2]} were not used`;
+
+        if (message) {
+            newState.lastGuessOk = false;
+            newState.lastGuessMessage = message;
+            return newState;
+        }
 
         // Check it's a real word.
-        if (english.indexOf(this.guess.toLocaleLowerCase()) === -1) return { ok, clear, message: `${this.guess} is not in the word list` };
+        if (english.indexOf(newState.lastGuess.toLocaleLowerCase()) === -1) {
+            newState.lastGuessMessage = `${newState.lastGuess} is not in the word list`;
+            newState.lastGuessOk = false;
+            return newState;
+        }
 
-        const points = this.calculatePoints();
+        newState.points += BrpGameEngine.calculatePoints(newState.lastGuess, brp);
+        newState.answers.push({ word: newState.lastGuess, brp: newState.brp, points });
+        newState.lastGuess = undefined;
+        newState.lastGuessOk = true;
+        newState.lastGuessMessage = undefined;
 
-        this.points += points;
-
-        this.answers.push({ word: this.guess, brp: this._brp, points });
-        this.guess = undefined;
-
-        return { ok: true, points };
+        return newState;
     }
 
-    private calculatePoints() {
-        if (!this.guess) return 0;
+    private static calculatePoints(guess: string, brp: Brp) {
+        if (!guess) return 0;
 
         let multiplier = 1;
         // Starts and ends with the first and last brp letter +1
-        if (this.guess.startsWith(this._brp[0]) && this.guess.endsWith(this._brp[2])) multiplier++;
+        if (guess.startsWith(brp[0]) && guess.endsWith(brp[2])) multiplier++;
 
         // Has the middle brp letter as it's middle letter.
-        if (this.guess.indexOf(this._brp[1]) === ((this.guess.length / 2) - 0.5)) multiplier++;
+        if (guess.indexOf(brp[1]) === ((guess.length / 2) - 0.5)) multiplier++;
 
         let points = 0;
-        this.guess.split('').forEach((letter) => {
+        guess.split('').forEach((letter) => {
             points += brpLetters[letter as BrpLetter];
         });
 
