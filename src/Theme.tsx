@@ -112,11 +112,11 @@ const theme = responsiveFontSizes(createTheme({
         },
         secondary: {
             contrastText: '#fff',
-            main: '#002552'
+            main: '#004faf'
         },
         primary: {
             contrastText: '#000000',
-            main: '#129900'
+            main: '#0c6b00'
         },
         text: {
             secondary: '#dadada'
