@@ -1,7 +1,7 @@
 import {
     Box, SxProps, Theme
 } from '@mui/material';
-import { useSnackbar } from 'notistack';
+import { SnackbarProps, useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import log from '../../Logger';
 import theme from '../../Theme';
@@ -9,6 +9,10 @@ import BrpGameConfig from './BrpGameConfig';
 import { BrpContextProvider } from './BrpGameContext';
 import BrpGameEngine from './BrpGameEngine';
 import LetterCard from './LetterCard';
+
+const snackProps: SnackbarProps = {
+    anchorOrigin: { vertical: 'top', horizontal: 'center' }
+};
 
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
     const [brpGameState, setGameState] = useState(BrpGameEngine.startGame({ gameMode }));
@@ -53,15 +57,15 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         const newState = BrpGameEngine.submitGuess(brpGameState);
         setGameState(newState);
         if (newState.lastGuessOk) {
-            if (newState.points !== brpGameState.points) {
-                enqueueSnackbar(`Nice, ${newState.points} points, you now have ${brpGameState.points} total`, { variant: 'success', anchorOrigin: { vertical: 'top', horizontal: 'center' } });
+            if (brpGameState.points) {
+                enqueueSnackbar(`Nice, ${newState.answers[0].points} points, you now have ${newState.points} total`, { ...snackProps, variant: 'success' });
             } else {
-                enqueueSnackbar(`Nice, ${newState.points} points!`, { variant: 'success' });
+                enqueueSnackbar(`Nice, ${newState.points} points!`, { ...snackProps, variant: 'success' });
             }
             setGuess('');
         } else {
             setGuess('');
-            enqueueSnackbar(`${newState.lastGuessMessage}`, { variant: 'info' });
+            enqueueSnackbar(`${newState.lastGuessMessage}`, { ...snackProps, variant: 'info' });
         }
     };
 
@@ -94,15 +98,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         <BrpContextProvider value={{ gameMode, background }}>
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={letterStyle}>
-                        <LetterCard brpLetter={brpGameState.brp[0]} />
-                    </Box>
-                    <Box sx={{ ...letterStyle, mr: 3, ml: 3 }}>
-                        <LetterCard brpLetter={brpGameState.brp[1]} />
-                    </Box>
-                    <Box sx={letterStyle}>
-                        <LetterCard brpLetter={brpGameState.brp[2]} />
-                    </Box>
+                    <Box sx={letterStyle}><LetterCard brpLetter={brpGameState.brp[0]} /></Box>
+                    <Box sx={{ ...letterStyle, ml: 3, mr: 3 }}><LetterCard brpLetter={brpGameState.brp[1]} /></Box>
+                    <Box sx={letterStyle}><LetterCard brpLetter={brpGameState.brp[2]} /></Box>
                 </Box>
             </Box>
             <Box>

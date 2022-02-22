@@ -63,8 +63,9 @@ export default class BrpGameEngine {
             return newState;
         }
 
-        newState.points += BrpGameEngine.calculatePoints(newState.lastGuess, brp);
-        newState.answers.push({ word: newState.lastGuess, brp: newState.brp, points });
+        const pointsEarned = BrpGameEngine.calculatePoints(newState.lastGuess, brp);
+        newState.points += pointsEarned;
+        newState.answers.unshift({ word: newState.lastGuess, brp: newState.brp, points: pointsEarned });
         newState.lastGuess = undefined;
         newState.lastGuessOk = true;
         newState.lastGuessMessage = undefined;
