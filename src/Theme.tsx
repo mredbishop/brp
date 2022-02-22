@@ -91,7 +91,7 @@ const gradients = {
 
 const theme = responsiveFontSizes(createTheme({
     margins: {
-        standard: '1rem'
+        standard: '2rem'
     },
     borders: {
         radius: '6px'
@@ -108,7 +108,7 @@ const theme = responsiveFontSizes(createTheme({
         mode: 'dark',
         background: {
             default: '#242424',
-            paper: '#363636'
+            paper: '#222222'
         },
         secondary: {
             contrastText: '#fff',

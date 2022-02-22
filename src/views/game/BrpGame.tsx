@@ -99,7 +99,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Box sx={letterStyle}><LetterCard brpLetter={brpGameState.brp[0]} /></Box>
-                    <Box sx={{ ...letterStyle, ml: 3, mr: 3 }}><LetterCard brpLetter={brpGameState.brp[1]} /></Box>
+                    <Box sx={{ ...letterStyle, ml: '3vw', mr: '3vw' }}><LetterCard brpLetter={brpGameState.brp[1]} /></Box>
                     <Box sx={letterStyle}><LetterCard brpLetter={brpGameState.brp[2]} /></Box>
                 </Box>
             </Box>
