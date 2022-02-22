@@ -54,7 +54,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         setGameState(newState);
         if (newState.lastGuessOk) {
             if (newState.points !== brpGameState.points) {
-                enqueueSnackbar(`Nice, ${newState.points} points, you now have ${brpGameState.points} total`, { variant: 'success' });
+                enqueueSnackbar(`Nice, ${newState.points} points, you now have ${brpGameState.points} total`, { variant: 'success', anchorOrigin: { vertical: 'top', horizontal: 'center' } });
             } else {
                 enqueueSnackbar(`Nice, ${newState.points} points!`, { variant: 'success' });
             }
@@ -70,14 +70,12 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         width: '28vw',
         height: '28vw',
         borderRadius: theme.borders.radius,
-        border: '1px solid #fff',
-        boxShadow: '0px 0px 4px 3px #ffffff55'
+        boxShadow: '0px 0px 6px 3px  #000'
     };
 
     const inputStyle: React.CSSProperties = {
-        border: '1px solid #fff',
-        background: theme.glassCards[background],
-        color: 'white',
+        background: '#ffffff',
+        color: theme.palette.background.default,
         padding: '8px',
         width: '100%',
         lineHeight: '5vw',
@@ -87,8 +85,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         fontFamily: theme.typography.fontFamily,
         letterSpacing: '8px',
         borderRadius: theme.borders.radius,
-        boxShadow: '0px 0px 4px 3px #ffffff55',
-        marginTop: theme.margins.standard
+        boxShadow: '0px 0px 6px 3px #000',
+        marginTop: theme.margins.standard,
+        border: 'none'
     };
 
     return (

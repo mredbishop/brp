@@ -27,7 +27,7 @@ const Snackbar = styled(SnackbarProvider)`
 const App = () => (
     <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Snackbar maxSnack={3}>
+        <Snackbar maxSnack={5}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout><Outlet /></Layout>}>

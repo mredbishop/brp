@@ -10,7 +10,7 @@ const LetterCard = ({ brpLetter }: LetterCardConfig) => {
     return (
         <GlassCard background={background}>
             <Box sx={{ textAlign: 'center' }}>
-                <Typography sx={{ fontWeight: 600, fontSize: '18vw' }}>{brpLetter}</Typography>
+                <Typography sx={{ fontWeight: 600, fontSize: '18vw', textShadow: '-6px 6px 6px #000' }}>{brpLetter}</Typography>
             </Box>
         </GlassCard>
     );

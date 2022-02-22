@@ -1,13 +1,14 @@
 {
     "name": "brp",
-    "version": "0.0.0",
+    "version": "1.0.0-alpha.1",
     "scripts": {
         "playground": "ts-node playground/playground.ts",
         "start": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "icons": "npx capacitor-resources",
-        "mobile": "tsc && vite build && npx cap sync && npx cap sync @capacitor-community/electron && cd android && ./gradlew assembleDebug && cd ../.."
+        "mobile": "npm run build && npx cap sync && npx cap sync @capacitor-community/electron",
+        "android": "npm run mobile && npx cap copy android && cd android && ./gradlew assembleDebug && cd ../.."
     },
     "dependencies": {
         "@capacitor-community/electron": "^4.1.0",

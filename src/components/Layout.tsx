@@ -55,7 +55,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                 <Box>
                     <BottomNavigation
                         sx={{
-                            width: '100%', mt: theme.margins.standard, borderRadius: theme.borders.radius
+                            width: '100%', mt: theme.margins.standard, borderRadius: theme.borders.radius, background: '#000'
                         }}
                         value={value}
                         onChange={handleChange}

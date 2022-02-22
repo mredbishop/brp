@@ -68,11 +68,11 @@ const gradients = {
         contrastText: '#fff'
     },
     primary: {
-        main: 'linear-gradient(117deg, #2e0019 0%, #cc0070 100%)',
+        main: 'linear-gradient(117deg, #0c6400 0%, #129900 100%)',
         contrastText: '#fff'
     },
     error: {
-        main: 'linear-gradient(302deg, #490022 0%, #920044 100%)',
+        main: 'linear-gradient(302deg, #003c64 0%, #006bb3 100%)',
         contrastText: '#fff'
     },
     warning: {
@@ -91,7 +91,7 @@ const gradients = {
 
 const theme = responsiveFontSizes(createTheme({
     margins: {
-        standard: '2rem'
+        standard: '1rem'
     },
     borders: {
         radius: '6px'
@@ -101,14 +101,14 @@ const theme = responsiveFontSizes(createTheme({
     },
     gradients,
     glassCards: {
-        primaryBackground: 'linear-gradient(210deg, #0063e6 0%, #00193a 80%, #000c1b 100%)',
-        secondaryBackground: 'linear-gradient(210deg, #d10062 0%, #2b0014 80%, #000c1b 100%)'
+        primaryBackground: 'linear-gradient(210deg, #001320 0%, #003c64 50%, #006bb3 100%)',
+        secondaryBackground: 'linear-gradient(210deg, #031600 0%, #0c6400 50%, #129900 100%)'
     },
     palette: {
         mode: 'dark',
         background: {
-            default: '#000c1b',
-            paper: '#00193a'
+            default: '#242424',
+            paper: '#363636'
         },
         secondary: {
             contrastText: '#fff',
@@ -116,7 +116,7 @@ const theme = responsiveFontSizes(createTheme({
         },
         primary: {
             contrastText: '#000000',
-            main: '#d10062'
+            main: '#129900'
         },
         text: {
             secondary: '#dadada'
