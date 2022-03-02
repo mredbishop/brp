@@ -3,12 +3,12 @@ import FloIcon from '@mui/icons-material/RocketLaunchTwoTone';
 import BrpIcon from '@mui/icons-material/RocketTwoTone';
 import {
     BottomNavigation,
-    BottomNavigationAction
+    BottomNavigationAction,
+    useMediaQuery, useTheme
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import theme from '../Theme';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -25,6 +25,10 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
         setValue(newValue);
     };
 
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const fontSize = isSmallScreen ? 'medium' : 'large';
+
     return (
         <Box sx={{ display: 'flex', height: '100%' }}>
             <Box
@@ -33,7 +37,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                     height: '100%',
                     flexGrow: 1,
                     width: '100%',
-                    padding: theme.margins.standard,
+                    padding: 2,
                     display: 'flex',
                     flexDirection: 'column'
                 }}
@@ -44,8 +48,13 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                 <Box>
                     <BottomNavigation
                         sx={{
-                            width: '100%', mt: theme.margins.standard, borderRadius: theme.borders.radius, background: '#000'
+                            width: '100%',
+                            mt: 2,
+                            borderRadius: 1,
+                            background: '#000',
+                            height: isSmallScreen ? '56px' : '76px'
                         }}
+                        showLabels
                         value={value}
                         onChange={handleChange}
                     >
@@ -54,21 +63,21 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                             to="/"
                             label="Brp"
                             value="brp"
-                            icon={<BrpIcon />}
+                            icon={<BrpIcon fontSize={fontSize} />}
                         />
                         <BottomNavigationAction
                             component={Link}
                             to="/stats"
                             label="Stats"
                             value="stats"
-                            icon={<StatsIcon />}
+                            icon={<StatsIcon fontSize={fontSize} />}
                         />
                         <BottomNavigationAction
                             component={Link}
                             to="/flo"
                             label="Flo"
                             value="flo"
-                            icon={<FloIcon />}
+                            icon={<FloIcon fontSize={fontSize} />}
                         />
                     </BottomNavigation>
                 </Box>

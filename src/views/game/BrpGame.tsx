@@ -1,10 +1,9 @@
 import {
-    Box, SxProps, Theme
+    Box, styled, SxProps, Theme
 } from '@mui/material';
 import { SnackbarProps, useSnackbar } from 'notistack';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import log from '../../Logger';
-import theme from '../../Theme';
 import BrpGameConfig from './BrpGameConfig';
 import { BrpContextProvider } from './BrpGameContext';
 import BrpGameEngine from './BrpGameEngine';
@@ -14,9 +13,35 @@ const snackProps: SnackbarProps = {
     anchorOrigin: { vertical: 'top', horizontal: 'center' }
 };
 
+const letterStyle: SxProps<Theme> = {
+    flex: 1,
+    width: '28vw',
+    height: '28vw',
+    borderRadius: 1,
+    boxShadow: '0px 0px 6px 3px  #000'
+};
+
+const GuessInput = styled('input')((p) => ({
+    backgroundColor: '#fff',
+    color: '#111',
+    padding: '8px',
+    width: '100%',
+    lineHeight: '5vw',
+    fontSize: '5vw',
+    textAlign: 'center',
+    fontWeight: 600,
+    letterSpacing: '8px',
+    borderRadius: p.theme.shape.borderRadius,
+    boxShadow: '0px 0px 6px 3px #000',
+    marginTop: p.theme.spacing(2),
+    border: 'none'
+}));
+
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
     const [brpGameState, setGameState] = useState(BrpGameEngine.startGame({ gameMode }));
     const [guess, setGuess] = useState('');
+    const guessInput = useRef<HTMLInputElement>(null);
+    useEffect(() => guessInput.current?.focus(), []);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -69,31 +94,6 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         }
     };
 
-    const letterStyle: SxProps<Theme> = {
-        flex: 1,
-        width: '28vw',
-        height: '28vw',
-        borderRadius: theme.borders.radius,
-        boxShadow: '0px 0px 6px 3px  #000'
-    };
-
-    const inputStyle: React.CSSProperties = {
-        background: '#ffffff',
-        color: theme.palette.background.default,
-        padding: '8px',
-        width: '100%',
-        lineHeight: '5vw',
-        fontSize: '5vw',
-        textAlign: 'center',
-        fontWeight: 600,
-        fontFamily: theme.typography.fontFamily,
-        letterSpacing: '8px',
-        borderRadius: theme.borders.radius,
-        boxShadow: '0px 0px 6px 3px #000',
-        marginTop: theme.margins.standard,
-        border: 'none'
-    };
-
     return (
         <BrpContextProvider value={{ gameMode, background }}>
             <Box>
@@ -104,7 +104,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                 </Box>
             </Box>
             <Box>
-                <input style={inputStyle} type="text" value={guess} onChange={change} onKeyDown={keyDown} onKeyUp={keyUp} />
+                <GuessInput ref={guessInput} type="text" value={guess} onChange={change} onKeyDown={keyDown} onKeyUp={keyUp} />
             </Box>
 
         </BrpContextProvider>

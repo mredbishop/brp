@@ -5,12 +5,6 @@ import {
 declare module '@mui/material/styles' {
   // eslint-disable-next-line no-unused-vars
  interface Theme {
-    margins: {
-        standard: string
-    },
-    borders :{
-        radius: string;
-    }
     gradients: {
       secondary: SimplePaletteColorOptions;
       primary: SimplePaletteColorOptions;
@@ -34,12 +28,6 @@ declare module '@mui/material/styles' {
 
   // eslint-disable-next-line no-unused-vars
   interface ThemeOptions {
-    margins: {
-        standard: string
-    },
-    borders :{
-        radius: string;
-    }
     gradients: {
       secondary: SimplePaletteColorOptions;
       primary: SimplePaletteColorOptions;
@@ -90,12 +78,6 @@ const gradients = {
 };
 
 const theme = responsiveFontSizes(createTheme({
-    margins: {
-        standard: '2rem'
-    },
-    borders: {
-        radius: '6px'
-    },
     typography: {
         fontFamily: 'Righteous,cursive'
     },
