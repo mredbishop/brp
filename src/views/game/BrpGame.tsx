@@ -1,6 +1,4 @@
-import {
-    Box, styled, SxProps, Theme
-} from '@mui/material';
+import { Box, styled, SxProps, Theme } from '@mui/material';
 import { SnackbarProps, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
 import log from '../../Logger';
@@ -10,7 +8,7 @@ import BrpGameEngine from './BrpGameEngine';
 import LetterCard from './LetterCard';
 
 const snackProps: SnackbarProps = {
-    anchorOrigin: { vertical: 'top', horizontal: 'center' }
+    anchorOrigin: { vertical: 'top', horizontal: 'center' },
 };
 
 const letterStyle: SxProps<Theme> = {
@@ -18,7 +16,7 @@ const letterStyle: SxProps<Theme> = {
     width: '28vw',
     height: '28vw',
     borderRadius: 1,
-    boxShadow: '0px 0px 6px 3px  #000'
+    boxShadow: '0px 0px 6px 3px  #000',
 };
 
 const GuessInput = styled('input')((p) => ({
@@ -34,11 +32,13 @@ const GuessInput = styled('input')((p) => ({
     borderRadius: p.theme.shape.borderRadius,
     boxShadow: '0px 0px 6px 3px #000',
     marginTop: p.theme.spacing(2),
-    border: 'none'
+    border: 'none',
 }));
 
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
-    const [brpGameState, setGameState] = useState(BrpGameEngine.startGame({ gameMode }));
+    const [brpGameState, setGameState] = useState(
+        BrpGameEngine.startGame({ gameMode })
+    );
     const [guess, setGuess] = useState('');
     const guessInput = useRef<HTMLInputElement>(null);
     useEffect(() => guessInput.current?.focus(), []);
@@ -51,7 +51,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
 
         let modified = false;
         if (/[^A-Z]/.test(thisGuess)) {
-            thisGuess = e.target.value.toLocaleUpperCase().replace(/[^A-Z]/g, '');
+            thisGuess = e.target.value
+                .toLocaleUpperCase()
+                .replace(/[^A-Z]/g, '');
             modified = true;
         }
 
@@ -70,7 +72,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
     };
 
     const keyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        const isValidKey = /[A-Z]|(?:Enter)|(?:Backspace)|(?:Delete)/i.test(e.key);
+        const isValidKey = /[A-Z]|(?:Enter)|(?:Backspace)|(?:Delete)/i.test(
+            e.key
+        );
         log(`${isValidKey ? 'Valid' : 'Invalid'} key:`, e.key);
         if (!isValidKey) return e.preventDefault();
     };
@@ -83,30 +87,51 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         setGameState(newState);
         if (newState.lastGuessOk) {
             if (brpGameState.points) {
-                enqueueSnackbar(`Nice, ${newState.answers[0].points} points, you now have ${newState.points} total`, { ...snackProps, variant: 'success' });
+                enqueueSnackbar(
+                    `Nice, ${newState.answers[0].points} points, you now have ${newState.points} total`,
+                    { ...snackProps, variant: 'success' }
+                );
             } else {
-                enqueueSnackbar(`Nice, ${newState.points} points!`, { ...snackProps, variant: 'success' });
+                enqueueSnackbar(`Nice, ${newState.points} points!`, {
+                    ...snackProps,
+                    variant: 'success',
+                });
             }
             setGuess('');
         } else {
             setGuess('');
-            enqueueSnackbar(`${newState.lastGuessMessage}`, { ...snackProps, variant: 'info' });
+            enqueueSnackbar(`${newState.lastGuessMessage}`, {
+                ...snackProps,
+                variant: 'info',
+            });
         }
     };
 
     return (
         <BrpContextProvider value={{ gameMode, background }}>
             <Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={letterStyle}><LetterCard brpLetter={brpGameState.brp[0]} /></Box>
-                    <Box sx={{ ...letterStyle, ml: '3vw', mr: '3vw' }}><LetterCard brpLetter={brpGameState.brp[1]} /></Box>
-                    <Box sx={letterStyle}><LetterCard brpLetter={brpGameState.brp[2]} /></Box>
-                </Box>
+                <GuessInput
+                    ref={guessInput}
+                    type='text'
+                    value={guess}
+                    onChange={change}
+                    onKeyDown={keyDown}
+                    onKeyUp={keyUp}
+                />
             </Box>
             <Box>
-                <GuessInput ref={guessInput} type="text" value={guess} onChange={change} onKeyDown={keyDown} onKeyUp={keyUp} />
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Box sx={letterStyle}>
+                        <LetterCard brpLetter={brpGameState.brp[0]} />
+                    </Box>
+                    <Box sx={{ ...letterStyle, ml: '3vw', mr: '3vw' }}>
+                        <LetterCard brpLetter={brpGameState.brp[1]} />
+                    </Box>
+                    <Box sx={letterStyle}>
+                        <LetterCard brpLetter={brpGameState.brp[2]} />
+                    </Box>
+                </Box>
             </Box>
-
         </BrpContextProvider>
     );
 };
