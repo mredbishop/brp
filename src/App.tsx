@@ -1,10 +1,6 @@
-import {
-    CssBaseline, styled, ThemeProvider, Typography
-} from '@mui/material';
+import { CssBaseline, styled, ThemeProvider, Typography } from '@mui/material';
 import { SnackbarProvider } from 'notistack';
-import {
-    BrowserRouter, Outlet, Route, Routes
-} from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import theme from './Theme';
 import Brp from './views/game/brp/Brp';
@@ -30,17 +26,24 @@ const App = () => (
         <Snackbar maxSnack={5}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Layout><Outlet /></Layout>}>
+                    <Route
+                        path="/"
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
                         <Route path="/" element={<Brp />} />
                         <Route path="/stats" element={<Stats />} />
                         <Route path="/flo" element={<Flo />} />
                         <Route
                             path="*"
-                            element={(
+                            element={
                                 <Typography variant="h6" textAlign="center">
                                     Error Page Not Found
                                 </Typography>
-                            )}
+                            }
                         />
                     </Route>
                 </Routes>

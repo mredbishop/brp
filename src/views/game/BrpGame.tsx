@@ -8,7 +8,7 @@ import BrpGameEngine from './BrpGameEngine';
 import LetterCard from './LetterCard';
 
 const snackProps: SnackbarProps = {
-    anchorOrigin: { vertical: 'top', horizontal: 'center' },
+    anchorOrigin: { vertical: 'top', horizontal: 'center' }
 };
 
 const letterStyle: SxProps<Theme> = {
@@ -16,7 +16,7 @@ const letterStyle: SxProps<Theme> = {
     width: '28vw',
     height: '28vw',
     borderRadius: 1,
-    boxShadow: '0px 0px 6px 3px  #000',
+    boxShadow: '0px 0px 6px 3px  #000'
 };
 
 const GuessInput = styled('input')((p) => ({
@@ -32,7 +32,7 @@ const GuessInput = styled('input')((p) => ({
     borderRadius: p.theme.shape.borderRadius,
     boxShadow: '0px 0px 6px 3px #000',
     marginTop: p.theme.spacing(2),
-    border: 'none',
+    border: 'none'
 }));
 
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
@@ -94,7 +94,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
             } else {
                 enqueueSnackbar(`Nice, ${newState.points} points!`, {
                     ...snackProps,
-                    variant: 'success',
+                    variant: 'success'
                 });
             }
             setGuess('');
@@ -102,23 +102,13 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
             setGuess('');
             enqueueSnackbar(`${newState.lastGuessMessage}`, {
                 ...snackProps,
-                variant: 'info',
+                variant: 'info'
             });
         }
     };
 
     return (
         <BrpContextProvider value={{ gameMode, background }}>
-            <Box>
-                <GuessInput
-                    ref={guessInput}
-                    type='text'
-                    value={guess}
-                    onChange={change}
-                    onKeyDown={keyDown}
-                    onKeyUp={keyUp}
-                />
-            </Box>
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Box sx={letterStyle}>
@@ -131,6 +121,16 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                         <LetterCard brpLetter={brpGameState.brp[2]} />
                     </Box>
                 </Box>
+            </Box>
+            <Box>
+                <GuessInput
+                    ref={guessInput}
+                    type="text"
+                    value={guess}
+                    onChange={change}
+                    onKeyDown={keyDown}
+                    onKeyUp={keyUp}
+                />
             </Box>
         </BrpContextProvider>
     );
