@@ -1,4 +1,10 @@
-import { CssBaseline, styled, ThemeProvider, Typography } from '@mui/material';
+import {
+    Box,
+    CssBaseline,
+    styled,
+    ThemeProvider,
+    Typography
+} from '@mui/material';
 import { SnackbarProvider } from 'notistack';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -29,9 +35,11 @@ const App = () => (
                     <Route
                         path="/"
                         element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
+                            <Box sx={{ width: '100%', textAlign: 'center' }}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Box>
                         }
                     >
                         <Route path="/" element={<Brp />} />

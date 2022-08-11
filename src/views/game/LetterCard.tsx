@@ -13,8 +13,11 @@ const LetterCard = ({ brpLetter }: LetterCardConfig) => {
                 <Typography
                     sx={{
                         fontWeight: 600,
-                        fontSize: '20vw',
-                        textShadow: '-1vw 1vw 0.5vw #000'
+                        fontSize: {
+                            xs: '70px',
+                            md: '160px'
+                        },
+                        textShadow: '-10px 10px 5px #000'
                     }}
                 >
                     {brpLetter}

@@ -1,14 +1,6 @@
-import StatsIcon from '@mui/icons-material/EmojiEventsTwoTone';
-import FloIcon from '@mui/icons-material/RocketLaunchTwoTone';
-import BrpIcon from '@mui/icons-material/RocketTwoTone';
-import {
-    BottomNavigation,
-    BottomNavigationAction,
-    useMediaQuery, useTheme
-} from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -21,7 +13,10 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     else if (p === '/flo') currentValue = 'flo';
     const [value, setValue] = React.useState(currentValue);
 
-    const handleChange = (_e: React.SyntheticEvent<Element, Event>, newValue: string) => {
+    const handleChange = (
+        _e: React.SyntheticEvent<Element, Event>,
+        newValue: string
+    ) => {
         setValue(newValue);
     };
 
@@ -30,7 +25,13 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     const fontSize = isSmallScreen ? 'medium' : 'large';
 
     return (
-        <Box sx={{ display: 'flex', height: '100%' }}>
+        <Box
+            sx={{
+                width: '100%',
+                height: '100%',
+                textAlign: 'center'
+            }}
+        >
             <Box
                 component="main"
                 sx={{
@@ -42,10 +43,8 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                     flexDirection: 'column'
                 }}
             >
-                <Box sx={{ flexGrow: 1 }}>
-                    {children}
-                </Box>
-                <Box>
+                <Box sx={{ flexGrow: 1 }}>{children}</Box>
+                {/* <Box>
                     <BottomNavigation
                         sx={{
                             width: '100%',
@@ -80,7 +79,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                             icon={<FloIcon fontSize={fontSize} />}
                         />
                     </BottomNavigation>
-                </Box>
+                </Box> */}
             </Box>
         </Box>
     );
