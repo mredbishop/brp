@@ -38,6 +38,7 @@ export default class BrpGameEngine {
             return newState;
         }
 
+        // TODO: Rewrite this section so that each letter is used up in case of two (or three) of the same.
         // Check all the letters are used
         let message: string | undefined;
         const has1 = newState.lastGuess.indexOf(newState.brp[0]) > -1;

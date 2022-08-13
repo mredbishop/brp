@@ -11,6 +11,7 @@ import Layout from './components/Layout';
 import theme from './Theme';
 import Brp from './views/game/brp/Brp';
 import Flo from './views/game/flo/Flo';
+import Home from './views/home/Home';
 import Stats from './views/stats/Stats';
 
 // remove when https://github.com/iamhosseindhv/notistack/issues/440 fixed
@@ -42,7 +43,8 @@ const App = () => (
                             </Box>
                         }
                     >
-                        <Route path="/" element={<Brp />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/brp" element={<Brp />} />
                         <Route path="/stats" element={<Stats />} />
                         <Route path="/flo" element={<Flo />} />
                         <Route
