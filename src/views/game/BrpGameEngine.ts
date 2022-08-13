@@ -11,17 +11,17 @@ export default class BrpGameEngine {
         const brp = Brps.all[index][0];
 
         const state: BrpGameState = {
-            gameMode, brp, answers: [], points: 0, guesses: 0
+            gameMode, brp, answers: [], points: 0, guesses: 0, counter: 42
         };
 
         return state;
     }
 
     public static submitGuess({
-        gameMode, brp, answers, points, lastGuess, guesses
+        gameMode, brp, answers, points, lastGuess, guesses, counter
     }: BrpGameState): BrpGameState {
         const newState: BrpGameState = {
-            gameMode, brp, answers, points, lastGuess, guesses
+            gameMode, brp, answers, points, lastGuess, guesses, counter
         };
 
         // Check you used enough the letters
@@ -31,12 +31,14 @@ export default class BrpGameEngine {
             return newState;
         }
 
-        if (newState.answers.some((a) => a.word === newState.lastGuess)) {
+        // Check you haven't already guessed this
+        if (gameMode === 'brp' && newState.answers.some((a) => a.word === newState.lastGuess)) {
             newState.lastGuessOk = false;
             newState.lastGuessMessage = `You already used ${newState.lastGuess}`;
             return newState;
         }
 
+        // Check all the letters are used
         let message: string | undefined;
         const has1 = newState.lastGuess.indexOf(newState.brp[0]) > -1;
         const has2 = newState.lastGuess.indexOf(newState.brp[1]) > -1;
@@ -69,6 +71,20 @@ export default class BrpGameEngine {
         newState.lastGuess = undefined;
         newState.lastGuessOk = true;
         newState.lastGuessMessage = undefined;
+
+        if (newState.gameMode === 'flo') {
+            newState.counter--;
+            let newBrp: Brp;
+            do {
+                const index = Math.ceil(Math.random() * 2000);
+                [newBrp] = Brps.all[index];
+            } while (newBrp === newState.brp);
+
+            newState.brp = newBrp;
+            if (counter <= 0) {
+                newState.finished = true;
+            }
+        }
 
         return newState;
     }

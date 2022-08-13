@@ -10,6 +10,8 @@ type BrpGameState = {
     lastGuessOk?: boolean;
     lastGuessMessage?: string;
     guesses: number;
+    counter: number;
+    finished: boolean;
 }
 
 export default BrpGameState;

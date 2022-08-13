@@ -2,6 +2,7 @@ import { Box, styled, SxProps, Theme, Typography } from '@mui/material';
 import { SnackbarProps, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
 import log from '../../Logger';
+import Counter from './brp/Counter';
 import BrpGameConfig from './BrpGameConfig';
 import { BrpContextProvider } from './BrpGameContext';
 import BrpGameEngine from './BrpGameEngine';
@@ -51,7 +52,7 @@ const guessInputSyle: SxProps<Theme> = {
     border: 'none'
 };
 
-const GuessInput = styled('input')();
+const GuessInput = styled('input')({});
 
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
     const [brpGameState, setGameState] = useState(
@@ -133,6 +134,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                         ? `${brpGameState.points} points`
                         : 'Start'}
                 </Typography>
+            </Box>
+            <Box display="flex" flexDirection="column" alignItems="center">
+                <Counter counter={brpGameState.counter} />
             </Box>
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
