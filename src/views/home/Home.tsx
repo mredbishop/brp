@@ -2,10 +2,13 @@ import { Box, Button, SxProps, Theme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const btnStyle: SxProps<Theme> = {
-    margin: '10px',
-    width: '200px',
-    color: '#fff'
+    margin: '30px',
+    width: '280px',
+    color: '#fff',
+    fontSize: '72px',
+    textDecoration: 'none'
 };
+
 const Home = () => (
     <Box>
         <Box>
