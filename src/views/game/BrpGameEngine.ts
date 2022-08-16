@@ -11,17 +11,17 @@ export default class BrpGameEngine {
         const brp = Brps.all[index][0];
 
         const state: BrpGameState = {
-            gameMode, brp, answers: [], points: 0, guesses: 0, counter: 42
+            gameMode, brp, answers: [], points: 0, guesses: 0, counter: 42, finished: false
         };
 
         return state;
     }
 
     public static submitGuess({
-        gameMode, brp, answers, points, lastGuess, guesses, counter
+        gameMode, brp, answers, points, lastGuess, guesses, counter, finished
     }: BrpGameState): BrpGameState {
         const newState: BrpGameState = {
-            gameMode, brp, answers, points, lastGuess, guesses, counter
+            gameMode, brp, answers, points, lastGuess, guesses, counter, finished
         };
 
         // Check you used enough the letters
