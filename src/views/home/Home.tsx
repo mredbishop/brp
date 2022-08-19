@@ -1,37 +1,73 @@
-import { Box, Button, SxProps, Theme } from '@mui/material';
+import { Box, List, ListItem, SxProps, Theme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const btnStyle: SxProps<Theme> = {
-    margin: '30px',
-    width: '280px',
-    color: '#fff',
-    fontSize: '72px',
-    textDecoration: 'none'
+const homeStyle: SxProps<Theme> = {
+    ul: {
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '30px',
+        li: {
+            position: 'relative',
+            listStyle: 'none',
+            a: {
+                position: 'relative',
+                fontSize: '72px',
+                fontWeight: 'bold',
+                textDecoration: 'none',
+                lineHeight: '72px',
+                letterSpacing: ' 2px',
+                textTransform: 'uppercase',
+                color: 'transparent',
+                WebkitTextStroke: '1px rgba(225, 225, 225, 0.5)',
+                '&::before': {
+                    content: 'attr(data-text)',
+                    position: 'absolute',
+                    left: '-7px',
+                    top: '1px',
+                    color: 'white',
+                    width: 0,
+                    overflow: 'hidden',
+                    transition: '0.75s',
+                    borderLeft: '8px solid var(--item-colour)',
+                    WebkitTextStroke: '1px var(--item-colour)'
+                },
+                '&:hover::before': {
+                    width: '110%',
+                    borderRight: '8px solid var(--item-colour)',
+                    filter: 'drop-shadow(0 0 25px var(--item-colour))'
+                },
+                '&:active::before': {
+                    width: '110%',
+                    borderRight: '8px solid var(--item-colour)',
+                    filter: 'drop-shadow(0 0 25px var(--item-colour))'
+                }
+            }
+        }
+    }
 };
 
+const getColour = (colour: string): SxProps<Theme> => ({
+    '--item-colour': colour
+});
+
+const menuItems = [
+    { to: '/brp', text: 'BRP', colour: getColour('#00559b') },
+    { to: '/flo', text: 'FLO', colour: getColour('#007c0a') },
+    { to: '/stats', text: 'STATS', colour: getColour('#a10b00') }
+];
+
 const Home = () => (
-    <Box>
-        <Box>
-            <Link to="/brp">
-                <Button sx={btnStyle} variant="contained">
-                    BRP
-                </Button>
-            </Link>
-        </Box>
-        <Box>
-            <Link to="/flo">
-                <Button sx={btnStyle} variant="contained">
-                    FLO
-                </Button>
-            </Link>
-        </Box>
-        <Box>
-            <Link to="/stats">
-                <Button sx={btnStyle} variant="contained">
-                    Stats
-                </Button>
-            </Link>
-        </Box>
+    <Box sx={homeStyle}>
+        <List>
+            {menuItems.map(({ to, text, colour: sx }) => (
+                <ListItem key={to} sx={sx}>
+                    <Link data-text={text} to={to}>
+                        {text}
+                    </Link>
+                </ListItem>
+            ))}
+        </List>
     </Box>
 );
 
