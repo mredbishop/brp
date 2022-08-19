@@ -48,8 +48,16 @@ const guessInputSyle: SxProps<Theme> = {
     letterSpacing: '4px',
     borderRadius: 2,
     boxShadow: '0px 0px 6px 3px #000',
-    marginTop: '20px',
+    margin: '20px 0',
     border: 'none'
+};
+
+const statsStyle: SxProps<Theme> = {
+    margin: '20px'
+};
+
+const statsItemStyle: SxProps<Theme> = {
+    TextAlign: 'center'
 };
 
 const GuessInput = styled('input')({});
@@ -128,17 +136,28 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
 
     return (
         <BrpContextProvider value={{ gameMode, background }}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-                <Typography variant="h4" component="h1">
-                    {brpGameState.points
-                        ? `${brpGameState.points} points`
-                        : 'Start'}
-                </Typography>
+            <Box sx={statsStyle}>
+                <Box sx={statsItemStyle}>
+                    <Typography sx={{ fontSize: '72px' }}>
+                        {brpGameState.points
+                            ? `${brpGameState.points} points`
+                            : 'Start'}
+                    </Typography>
+                </Box>
             </Box>
-            <Box display="flex" flexDirection="column" alignItems="center">
-                <Counter counter={brpGameState.counter} />
-            </Box>
+
             <Box>
+                <GuessInput
+                    sx={guessInputSyle}
+                    ref={guessInput}
+                    type="text"
+                    value={guess}
+                    onChange={change}
+                    onKeyDown={keyDown}
+                    onKeyUp={keyUp}
+                />
+            </Box>
+            <Box sx={{ margin: '20px 0' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Box sx={letterStyle}>
                         <LetterCard brpLetter={brpGameState.brp[0]} />
@@ -163,16 +182,10 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                     </Box>
                 </Box>
             </Box>
-            <Box>
-                <GuessInput
-                    sx={guessInputSyle}
-                    ref={guessInput}
-                    type="text"
-                    value={guess}
-                    onChange={change}
-                    onKeyDown={keyDown}
-                    onKeyUp={keyUp}
-                />
+            <Box sx={statsStyle}>
+                <Box sx={statsItemStyle}>
+                    <Counter counter={brpGameState.counter} />
+                </Box>
             </Box>
         </BrpContextProvider>
     );
