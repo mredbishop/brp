@@ -73,28 +73,28 @@ const Home = () => (
             <ListItem>
                 <span>
                     Ed
-                    <b>Cowboy</b>
+                    <b>&nbsp;Cowboy&nbsp;</b>
                     Bishop
                 </span>
             </ListItem>
             <ListItem>
                 <span>
                     Susie
-                    <b>Rock Chick</b>
+                    <b>&nbsp;Rock Chick&nbsp;</b>
                     Bishop
                 </span>
             </ListItem>
             <ListItem>
                 <span>
                     Carla
-                    <b>Magic</b>
+                    <b>&nbsp;Magic&nbsp;</b>
                     Bishop
                 </span>
             </ListItem>
             <ListItem>
                 <span>
                     Chris
-                    <b>Maverick</b>
+                    <b>&nbsp;Maverick&nbsp;</b>
                     Bruce
                 </span>
             </ListItem>
