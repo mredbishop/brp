@@ -1,4 +1,4 @@
-import { Box, List, ListItem, SxProps, Theme, Typography } from '@mui/material';
+import { Box, List, ListItem, SxProps, Theme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const homeStyle: SxProps<Theme> = {
@@ -71,16 +71,32 @@ const Home = () => (
         <h2>Testing Team</h2>
         <List>
             <ListItem>
-                <span>Ed <b>Cowboy</b> Bishop</span>
+                <span>
+                    Ed
+                    <b>Cowboy</b>
+                    Bishop
+                </span>
             </ListItem>
             <ListItem>
-                <span>Susie <b>Rock Chick</b> Bishop</span>
+                <span>
+                    Susie
+                    <b>Rock Chick</b>
+                    Bishop
+                </span>
             </ListItem>
             <ListItem>
-                <span>Carla <b>Magic</b> Bishop</span>
+                <span>
+                    Carla
+                    <b>Magic</b>
+                    Bishop
+                </span>
             </ListItem>
             <ListItem>
-                <span>Chris <b>Maverick</b> Bruce</span>
+                <span>
+                    Chris
+                    <b>Maverick</b>
+                    Bruce
+                </span>
             </ListItem>
         </List>
     </Box>
