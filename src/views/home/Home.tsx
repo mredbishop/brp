@@ -71,16 +71,16 @@ const Home = () => (
         <h2>Testing Team</h2>
         <List>
             <ListItem>
-                <Typography>Ed &quote;Cowboy&quote; Bishop</Typography>
+                <span>Ed <b>Cowboy</b> Bishop</span>
             </ListItem>
             <ListItem>
-                <Typography>Susie &quote;Rock Chick&quote; Bishop</Typography>
+                <span>Susie <b>Rock Chick</b> Bishop</span>
             </ListItem>
             <ListItem>
-                <Typography>Carla &quote;Magic&quote; Bishop</Typography>
+                <span>Carla <b>Magic</b> Bishop</span>
             </ListItem>
             <ListItem>
-                <Typography>Chris &quote;Maverick&quote; Bruce</Typography>
+                <span>Chris <b>Maverick</b> Bruce</span>
             </ListItem>
         </List>
     </Box>
