@@ -7,7 +7,7 @@ export default function startGame({ gameMode }: { gameMode: GameMode; }) {
     const brp = Brps.all[index][0];
 
     const state: BrpGameState = {
-        gameMode, brp, answers: [], points: 0, guesses: 0, counter: 42, finished: false
+        gameMode, brp, answers: [], points: 0, guesses: 0, counter: 10, finished: false
     };
 
     return state;
