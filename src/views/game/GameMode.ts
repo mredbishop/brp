@@ -1,1 +1,2 @@
-export type GameMode = 'brp' | 'flo';
+type GameMode = 'brp' | 'flo';
+export default GameMode;

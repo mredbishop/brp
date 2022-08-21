@@ -8,7 +8,7 @@ type BrpGameState = {
     points: number;
     lastGuess?: string;
     lastGuessOk?: boolean;
-    lastGuessMessage?: string;
+    lastGuessMessages?: Array<string>;
     guesses: number;
     counter: number;
     finished: boolean;

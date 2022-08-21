@@ -5,7 +5,8 @@ import log from '../../Logger';
 import Counter from './brp/Counter';
 import BrpGameConfig from './BrpGameConfig';
 import { BrpContextProvider } from './BrpGameContext';
-import BrpGameEngine from './BrpGameEngine';
+import startGame from './BrpGameEngine/startGame';
+import submitGuess from './BrpGameEngine/submitGuess';
 import LetterCard from './LetterCard';
 
 const snackProps: SnackbarProps = {
@@ -63,9 +64,7 @@ const statsItemStyle: SxProps<Theme> = {
 const GuessInput = styled('input')({});
 
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
-    const [brpGameState, setGameState] = useState(
-        BrpGameEngine.startGame({ gameMode })
-    );
+    const [brpGameState, setGameState] = useState(startGame({ gameMode }));
     const [guess, setGuess] = useState('');
     const guessInput = useRef<HTMLInputElement>(null);
     useEffect(() => guessInput.current?.focus(), []);
@@ -110,7 +109,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         const isEnter = /(?:Enter)/i.test(e.key);
         if (!isEnter) return;
 
-        const newState = BrpGameEngine.submitGuess(brpGameState);
+        const newState = submitGuess(brpGameState);
         setGameState(newState);
         if (newState.lastGuessOk) {
             if (brpGameState.points) {
@@ -127,9 +126,11 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
             setGuess('');
         } else {
             setGuess('');
-            enqueueSnackbar(`${newState.lastGuessMessage}`, {
-                ...snackProps,
-                variant: 'info'
+            newState.lastGuessMessages?.forEach((m) => {
+                enqueueSnackbar(m, {
+                    ...snackProps,
+                    variant: 'info'
+                });
             });
         }
     };
