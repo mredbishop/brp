@@ -1,5 +1,5 @@
 import theme from '../../Theme';
-import { GameMode } from './GameMode';
+import GameMode from './GameMode';
 
 type BrpGameConfig = {
     gameMode: GameMode,

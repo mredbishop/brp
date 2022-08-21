@@ -1,5 +1,5 @@
 import Brp from './Brp';
-import { GameMode } from './GameMode';
+import GameMode from './GameMode';
 
 type BrpGameState = {
     gameMode: GameMode;

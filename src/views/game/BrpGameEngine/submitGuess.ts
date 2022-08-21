@@ -79,7 +79,7 @@ export default function submitGuess({
     newState.answers.unshift({ word: newState.lastGuess, brp: newState.brp, points: pointsEarned });
     newState.lastGuess = undefined;
     newState.lastGuessOk = true;
-    newState.lastGuessMessage = undefined;
+    newState.lastGuessMessages = undefined;
 
     if (newState.gameMode === 'flo') {
         newState.counter--;
