@@ -1,4 +1,4 @@
-import { Box, List, ListItem, SxProps, Theme } from '@mui/material';
+import { Box, List, ListItem, SxProps, Theme, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const homeStyle: SxProps<Theme> = {
@@ -52,9 +52,9 @@ const getColour = (colour: string): SxProps<Theme> => ({
 });
 
 const menuItems = [
-    { to: '/brp', text: 'BRP', colour: getColour('#00559b') },
-    { to: '/flo', text: 'FLO', colour: getColour('#007c0a') },
-    { to: '/stats', text: 'STATS', colour: getColour('#a10b00') }
+    //    { to: '/brp', text: 'FLO', colour: getColour('#00559b') },
+    { to: '/flo', text: 'BRP', colour: getColour('#007c0a') }
+    //    { to: '/stats', text: 'STATS', colour: getColour('#a10b00') }
 ];
 
 const Home = () => (
@@ -67,6 +67,21 @@ const Home = () => (
                     </Link>
                 </ListItem>
             ))}
+        </List>
+        <h2>Testing Team</h2>
+        <List>
+            <ListItem>
+                <Typography>Ed &quote;Cowboy&quote; Bishop</Typography>
+            </ListItem>
+            <ListItem>
+                <Typography>Susie &quote;Rock Chick&quote; Bishop</Typography>
+            </ListItem>
+            <ListItem>
+                <Typography>Carla &quote;Magic&quote; Bishop</Typography>
+            </ListItem>
+            <ListItem>
+                <Typography>Chris &quote;Maverick&quote; Bruce</Typography>
+            </ListItem>
         </List>
     </Box>
 );
