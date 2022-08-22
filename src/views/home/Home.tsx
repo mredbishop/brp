@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const homeStyle: SxProps<Theme> = {
     ul: {
+        fontFamily: 'Righteous,cursive',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
