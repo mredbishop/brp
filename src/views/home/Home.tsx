@@ -1,8 +1,14 @@
 import { Box, List, ListItem, SxProps, Theme } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { MouseEventHandler } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const homeStyle: SxProps<Theme> = {
     ul: {
+        '&.navigating': {
+            transition: '350ms',
+            transitionTimingFunction: 'linear',
+            opacity: 0
+        },
         fontFamily: 'Righteous,cursive',
         position: 'relative',
         display: 'flex',
@@ -29,16 +35,17 @@ const homeStyle: SxProps<Theme> = {
                     color: 'white',
                     width: 0,
                     overflow: 'hidden',
-                    transition: '275MS',
+                    transition: '350ms',
+                    transitionTimingFunction: 'ease-in-out',
                     borderLeft: '8px solid var(--item-colour)',
                     WebkitTextStroke: '1px var(--item-colour)'
                 },
-                '&:hover::before': {
+                '&:active::before': {
                     width: '110%',
                     borderRight: '8px solid var(--item-colour)',
                     filter: 'drop-shadow(0 0 25px var(--item-colour))'
                 },
-                '&:active::before': {
+                '&.active::before': {
                     width: '110%',
                     borderRight: '8px solid var(--item-colour)',
                     filter: 'drop-shadow(0 0 25px var(--item-colour))'
@@ -58,26 +65,38 @@ const menuItems = [
     { to: '/stats', text: 'TEAM', colour: getColour('#a10b00') }
 ];
 
-const handleTouchStart = (event: TouchEvent) => {
-    event.
-}
+const Home = () => {
+    const navigate = useNavigate();
 
-const handleTouchEnd = (link: TouchEvent) => {
+    const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+        event.preventDefault();
+        const to = event.currentTarget.getAttribute('data-to');
+        if (!to) return;
+        event.currentTarget.parentElement?.parentElement?.classList.add(
+            'navigating'
+        );
+        event.currentTarget.classList.add('active');
+        setTimeout(() => navigate(to), 275);
+    };
 
-}
-
-const Home = () => (
-    <Box sx={homeStyle}>
-        <List>
-            {menuItems.map(({ to, text, colour: sx }) => (
-                <ListItem key={to} sx={sx}>
-                    <Link data-text={text} to={to} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-                        {text}
-                    </Link>
-                </ListItem>
-            ))}
-        </List>
-    </Box>
-);
+    return (
+        <Box sx={homeStyle}>
+            <List>
+                {menuItems.map(({ to, text, colour: sx }) => (
+                    <ListItem key={to} sx={sx}>
+                        <Link
+                            data-text={text}
+                            data-to={to}
+                            to={to}
+                            onClick={handleClick}
+                        >
+                            {text}
+                        </Link>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+};
 
 export default Home;

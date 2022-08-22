@@ -1,13 +1,13 @@
 import { Box, styled, SxProps, Theme, Typography } from '@mui/material';
 import { SnackbarProps, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import log from '../../Logger';
 import Counter from './brp/Counter';
 import BrpGameConfig from './BrpGameConfig';
 import { BrpContextProvider } from './BrpGameContext';
 import startGame from './BrpGameEngine/startGame';
 import submitGuess from './BrpGameEngine/submitGuess';
+import CloseLink from './CloseLink';
 import LetterCard from './LetterCard';
 
 const snackProps: SnackbarProps = {
@@ -136,31 +136,9 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         }
     };
 
-    const closeLinkStyle: SxProps<Theme> = {
-        position: 'relative',
-        left: '-50%;',
-        display: 'inline',
-        marginLeft: '18px',
-        a: {
-            fontWeight: '600',
-            textDecoration: 'none',
-            background: '#444',
-            padding: '6px 10PX',
-            borderRadius: '3px',
-            color: 'red',
-            width: '22px',
-            transition: '275MS',
-            '&:hover': {
-                background: '#fff'
-            }
-        }
-    };
-
     return (
         <BrpContextProvider value={{ gameMode, background }}>
-            <Box sx={closeLinkStyle}>
-                <Link to="/">X</Link>
-            </Box>
+            <CloseLink />
             <Box sx={statsStyle}>
                 <Box sx={statsItemStyle}>
                     <Typography sx={{ fontSize: '72px' }}>
