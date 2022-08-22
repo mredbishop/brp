@@ -28,7 +28,7 @@ const homeStyle: SxProps<Theme> = {
                     color: 'white',
                     width: 0,
                     overflow: 'hidden',
-                    transition: '0.75s',
+                    transition: '275MS',
                     borderLeft: '8px solid var(--item-colour)',
                     WebkitTextStroke: '1px var(--item-colour)'
                 },
@@ -52,9 +52,9 @@ const getColour = (colour: string): SxProps<Theme> => ({
 });
 
 const menuItems = [
-    //    { to: '/brp', text: 'FLO', colour: getColour('#00559b') },
-    { to: '/flo', text: 'BRP', colour: getColour('#007c0a') }
-    //    { to: '/stats', text: 'STATS', colour: getColour('#a10b00') }
+    { to: '/flo', text: 'BRP', colour: getColour('#007c0a') },
+    { to: '/brp', text: 'FLO', colour: getColour('#00559b') },
+    { to: '/stats', text: 'TEAM', colour: getColour('#a10b00') }
 ];
 
 const Home = () => (
@@ -67,37 +67,6 @@ const Home = () => (
                     </Link>
                 </ListItem>
             ))}
-        </List>
-        <h2>Testing Team</h2>
-        <List>
-            <ListItem>
-                <span>
-                    Ed
-                    <b>&nbsp;Cowboy&nbsp;</b>
-                    Bishop
-                </span>
-            </ListItem>
-            <ListItem>
-                <span>
-                    Susie
-                    <b>&nbsp;Rock Chick&nbsp;</b>
-                    Bishop
-                </span>
-            </ListItem>
-            <ListItem>
-                <span>
-                    Carla
-                    <b>&nbsp;Magic&nbsp;</b>
-                    Bishop
-                </span>
-            </ListItem>
-            <ListItem>
-                <span>
-                    Chris
-                    <b>&nbsp;Maverick&nbsp;</b>
-                    Bruce
-                </span>
-            </ListItem>
         </List>
     </Box>
 );

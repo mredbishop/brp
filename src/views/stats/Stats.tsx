@@ -1,14 +1,41 @@
-import { Box, Typography } from '@mui/material';
+import { Box, List, ListItem } from '@mui/material';
 import GlassCard from '../../components/cards/GlassCard';
 
 const Stats = () => (
     <Box>
         <GlassCard>
             <Box sx={{ p: 3 }}>
-                <Typography>
-                    The total umber of games you&apos;ve won/lost etc will be
-                    shown here along with cool stats!
-                </Typography>
+                <h2>Testing Team</h2>
+                <List>
+                    <ListItem>
+                        <span>
+                            Ed
+                            <b>&nbsp;Cowboy&nbsp;</b>
+                            Bishop
+                        </span>
+                    </ListItem>
+                    <ListItem>
+                        <span>
+                            Susie
+                            <b>&nbsp;Rock Chick&nbsp;</b>
+                            Bishop
+                        </span>
+                    </ListItem>
+                    <ListItem>
+                        <span>
+                            Carla
+                            <b>&nbsp;Magic&nbsp;</b>
+                            Bishop
+                        </span>
+                    </ListItem>
+                    <ListItem>
+                        <span>
+                            Chris
+                            <b>&nbsp;Maverick&nbsp;</b>
+                            Bruce
+                        </span>
+                    </ListItem>
+                </List>
             </Box>
         </GlassCard>
     </Box>

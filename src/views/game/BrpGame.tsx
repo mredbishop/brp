@@ -1,6 +1,7 @@
 import { Box, styled, SxProps, Theme, Typography } from '@mui/material';
 import { SnackbarProps, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import log from '../../Logger';
 import Counter from './brp/Counter';
 import BrpGameConfig from './BrpGameConfig';
@@ -135,8 +136,31 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         }
     };
 
+    const closeLinkStyle: SxProps<Theme> = {
+        position: 'relative',
+        left: '-50%;',
+        display: 'inline',
+        marginLeft: '18px',
+        a: {
+            fontWeight: '600',
+            textDecoration: 'none',
+            background: '#444',
+            padding: '6px 10PX',
+            borderRadius: '3px',
+            color: 'red',
+            width: '22px',
+            transition: '275MS',
+            '&:hover': {
+                background: '#fff'
+            }
+        }
+    };
+
     return (
         <BrpContextProvider value={{ gameMode, background }}>
+            <Box sx={closeLinkStyle}>
+                <Link to="/">X</Link>
+            </Box>
             <Box sx={statsStyle}>
                 <Box sx={statsItemStyle}>
                     <Typography sx={{ fontSize: '72px' }}>
