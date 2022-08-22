@@ -1,16 +1,22 @@
 import { Box, List, ListItem, SxProps, Theme } from '@mui/material';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const homeStyle: SxProps<Theme> = {
     ul: {
+        '&.ready': {
+            transition: '400ms',
+            transitionTimingFunction: 'ease-in-out',
+            left: '0'
+        },
         '&.navigating': {
-            transition: '350ms',
-            transitionTimingFunction: 'linear',
-            opacity: 0
+            transition: '400ms',
+            transitionTimingFunction: 'ease-in-out',
+            left: '100vw'
         },
         fontFamily: 'Righteous,cursive',
         position: 'relative',
+        left: '-100vw',
         display: 'flex',
         flexDirection: 'column',
         gap: '30px',
@@ -35,7 +41,7 @@ const homeStyle: SxProps<Theme> = {
                     color: 'white',
                     width: 0,
                     overflow: 'hidden',
-                    transition: '350ms',
+                    transition: '400ms',
                     transitionTimingFunction: 'ease-in-out',
                     borderLeft: '8px solid var(--item-colour)',
                     WebkitTextStroke: '1px var(--item-colour)'
@@ -70,18 +76,27 @@ const Home = () => {
 
     const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
         event.preventDefault();
-        const to = event.currentTarget.getAttribute('data-to');
+        const link = event.currentTarget;
+        if (!link) return;
+
+        const to = link.getAttribute('data-to');
         if (!to) return;
-        event.currentTarget.parentElement?.parentElement?.classList.add(
-            'navigating'
-        );
-        event.currentTarget.classList.add('active');
-        setTimeout(() => navigate(to), 275);
+
+        link.classList.add('active');
+        const listClasses = link.parentElement?.parentElement?.classList;
+        setTimeout(() => {
+            listClasses?.add('navigating');
+            setTimeout(() => navigate(to), 400);
+        }, 400);
     };
 
+    useEffect(() => {
+        document.getElementById('homeMenu')?.classList.add('ready');
+    }, []);
+
     return (
-        <Box sx={homeStyle}>
-            <List>
+        <Box sx={homeStyle} classes="navigating">
+            <List id="homeMenu">
                 {menuItems.map(({ to, text, colour: sx }) => (
                     <ListItem key={to} sx={sx}>
                         <Link

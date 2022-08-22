@@ -8,6 +8,7 @@ type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({ children }) => (
     <Box
         sx={{
+            position: 'relative',
             width: '100%',
             height: '100%',
             textAlign: 'center'
