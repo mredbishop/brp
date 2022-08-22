@@ -58,12 +58,20 @@ const menuItems = [
     { to: '/stats', text: 'TEAM', colour: getColour('#a10b00') }
 ];
 
+const handleTouchStart = (event: TouchEvent) => {
+    event.
+}
+
+const handleTouchEnd = (link: TouchEvent) => {
+
+}
+
 const Home = () => (
     <Box sx={homeStyle}>
         <List>
             {menuItems.map(({ to, text, colour: sx }) => (
                 <ListItem key={to} sx={sx}>
-                    <Link data-text={text} to={to}>
+                    <Link data-text={text} to={to} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                         {text}
                     </Link>
                 </ListItem>
