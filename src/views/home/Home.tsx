@@ -61,7 +61,7 @@ const menuItems = [
     { to: '/flo', text: 'FLO', colour: getColour('#a08800') },
     { to: '/gro', text: 'GRO', colour: getColour('#00970d') },
     { to: '/kno', text: 'KNO', colour: getColour('#0069be') },
-    { to: '/team', text: 'TEAM', colour: getColour('#c56900') }
+    { to: '/who', text: 'WHO', colour: getColour('#c56900') }
 ];
 
 const Home = () => {

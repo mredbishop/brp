@@ -15,7 +15,7 @@ const teamStyle: SxProps<Theme> = {
     }
 };
 
-const Team = () => {
+const Who = () => {
     useEffect(() => {
         const homeMenu = document.getElementById('teamContainer');
         if (!homeMenu) return;
@@ -92,4 +92,4 @@ const Team = () => {
     );
 };
 
-export default Team;
+export default Who;

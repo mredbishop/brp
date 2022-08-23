@@ -11,7 +11,7 @@ import Layout from './components/Layout';
 import theme from './Theme';
 import BrpGame from './views/game/BrpGame';
 import Home from './views/home/Home';
-import Team from './views/team/Who';
+import Who from './views/who/Who';
 
 // remove when https://github.com/iamhosseindhv/notistack/issues/440 fixed
 const Snackbar = styled(SnackbarProvider)`
@@ -67,7 +67,7 @@ const App = () => (
                                 <BrpGame gameMode="kno" background="#0069be" />
                             }
                         />
-                        <Route path="/team" element={<Team />} />
+                        <Route path="/who" element={<Who />} />
                         <Route
                             path="*"
                             element={
