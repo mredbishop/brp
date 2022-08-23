@@ -8,13 +8,10 @@ const homeStyle: SxProps<Theme> = {
             transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
             left: '0'
         },
-        '&.navigating': {
-            transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
-            left: '100vw'
-        },
+        left: '-100vw',
+        transition: 'all 400ms cubic-bezier(0, 0.37, 0.48, 1)',
         fontFamily: 'Righteous,cursive',
         position: 'relative',
-        left: '-100vw',
         display: 'flex',
         flexDirection: 'column',
         gap: '30px',
@@ -79,17 +76,19 @@ const Home = () => {
         link.classList.add('active');
         const listClasses = link.parentElement?.parentElement?.classList;
         setTimeout(() => {
-            listClasses?.add('navigating');
+            listClasses?.remove('ready');
             setTimeout(() => navigate(to), 400);
         }, 400);
     };
 
     useEffect(() => {
-        document.getElementById('homeMenu')?.classList.add('ready');
+        const homeMenu = document.getElementById('homeMenu');
+        if (!homeMenu) return;
+        setTimeout(() => homeMenu.classList.add('ready'), 50);
     }, []);
 
     return (
-        <Box sx={homeStyle} classes="navigating">
+        <Box sx={homeStyle}>
             <List id="homeMenu">
                 {menuItems.map(({ to, text, colour: sx }) => (
                     <ListItem key={to} sx={sx}>

@@ -64,6 +64,16 @@ const statsItemStyle: SxProps<Theme> = {
 
 const GuessInput = styled('input')({});
 
+const closeStyles: SxProps<Theme> = {
+    '&.ready': {
+        transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
+        left: '0'
+    },
+    left: '-100vw',
+    transition: 'all 400ms cubic-bezier(0, 0.37, 0.48, 1)',
+    position: 'relative'
+};
+
 const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
     const [brpGameState, setGameState] = useState(startGame({ gameMode }));
     const [guess, setGuess] = useState('');
@@ -136,61 +146,69 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
         }
     };
 
-    return (
-        <BrpContextProvider value={{ gameMode, background }}>
-            <CloseLink />
-            <Box sx={statsStyle}>
-                <Box sx={statsItemStyle}>
-                    <Typography sx={{ fontSize: '72px' }}>
-                        {brpGameState.points
-                            ? `${brpGameState.points} points`
-                            : 'Start'}
-                    </Typography>
-                </Box>
-            </Box>
+    useEffect(() => {
+        const homeMenu = document.getElementById('brpGameContainer');
+        if (!homeMenu) return;
+        setTimeout(() => homeMenu.classList.add('ready'), 50);
+    }, []);
 
-            <Box>
-                <GuessInput
-                    sx={guessInputSyle}
-                    ref={guessInput}
-                    type="text"
-                    value={guess}
-                    onChange={change}
-                    onKeyDown={keyDown}
-                    onKeyUp={keyUp}
-                />
-            </Box>
-            <Box sx={{ margin: '20px 0' }}>
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={letterStyle}>
-                        <LetterCard brpLetter={brpGameState.brp[0]} />
-                    </Box>
-                    <Box
-                        sx={{
-                            ...letterStyle,
-                            ml: {
-                                xs: '20px',
-                                md: '40px'
-                            },
-                            mr: {
-                                xs: '20px',
-                                md: '40px'
-                            }
-                        }}
-                    >
-                        <LetterCard brpLetter={brpGameState.brp[1]} />
-                    </Box>
-                    <Box sx={letterStyle}>
-                        <LetterCard brpLetter={brpGameState.brp[2]} />
+    return (
+        <Box id="brpGameContainer" sx={closeStyles}>
+            <BrpContextProvider value={{ gameMode, background }}>
+                <CloseLink />
+                <Box sx={statsStyle}>
+                    <Box sx={statsItemStyle}>
+                        <Typography sx={{ fontSize: '72px' }}>
+                            {brpGameState.points
+                                ? `${brpGameState.points} points`
+                                : 'Start'}
+                        </Typography>
                     </Box>
                 </Box>
-            </Box>
-            <Box sx={statsStyle}>
-                <Box sx={statsItemStyle}>
-                    <Counter counter={brpGameState.counter} />
+
+                <Box>
+                    <GuessInput
+                        sx={guessInputSyle}
+                        ref={guessInput}
+                        type="text"
+                        value={guess}
+                        onChange={change}
+                        onKeyDown={keyDown}
+                        onKeyUp={keyUp}
+                    />
                 </Box>
-            </Box>
-        </BrpContextProvider>
+                <Box sx={{ margin: '20px 0' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Box sx={letterStyle}>
+                            <LetterCard brpLetter={brpGameState.brp[0]} />
+                        </Box>
+                        <Box
+                            sx={{
+                                ...letterStyle,
+                                ml: {
+                                    xs: '20px',
+                                    md: '40px'
+                                },
+                                mr: {
+                                    xs: '20px',
+                                    md: '40px'
+                                }
+                            }}
+                        >
+                            <LetterCard brpLetter={brpGameState.brp[1]} />
+                        </Box>
+                        <Box sx={letterStyle}>
+                            <LetterCard brpLetter={brpGameState.brp[2]} />
+                        </Box>
+                    </Box>
+                </Box>
+                <Box sx={statsStyle}>
+                    <Box sx={statsItemStyle}>
+                        <Counter counter={brpGameState.counter} />
+                    </Box>
+                </Box>
+            </BrpContextProvider>
+        </Box>
     );
 };
 
