@@ -5,13 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 const homeStyle: SxProps<Theme> = {
     ul: {
         '&.ready': {
-            transition: '400ms',
-            transitionTimingFunction: 'ease-in-out',
+            transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
             left: '0'
         },
         '&.navigating': {
-            transition: '400ms',
-            transitionTimingFunction: 'ease-in-out',
+            transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
             left: '100vw'
         },
         fontFamily: 'Righteous,cursive',
@@ -33,26 +31,22 @@ const homeStyle: SxProps<Theme> = {
                 textTransform: 'uppercase',
                 color: 'transparent',
                 WebkitTextStroke: '1px rgba(225, 225, 225, 0.5)',
+                paddingLeft: '21px',
                 '&::before': {
                     content: 'attr(data-text)',
                     position: 'absolute',
-                    left: '-7px',
+                    left: '3px',
                     top: '1px',
                     color: 'white',
                     width: 0,
                     overflow: 'hidden',
-                    transition: '400ms',
-                    transitionTimingFunction: 'ease-in-out',
+                    transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
                     borderLeft: '8px solid var(--item-colour)',
-                    WebkitTextStroke: '1px var(--item-colour)'
-                },
-                '&:active::before': {
-                    width: '110%',
-                    borderRight: '8px solid var(--item-colour)',
-                    filter: 'drop-shadow(0 0 25px var(--item-colour))'
+                    WebkitTextStroke: '1px var(--item-colour)',
+                    paddingLeft: '10px'
                 },
                 '&.active::before': {
-                    width: '110%',
+                    width: '106%',
                     borderRight: '8px solid var(--item-colour)',
                     filter: 'drop-shadow(0 0 25px var(--item-colour))'
                 }
