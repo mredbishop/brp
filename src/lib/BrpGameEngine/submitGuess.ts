@@ -1,7 +1,7 @@
-import english from '../../../dictionaries/english';
-import Brp from '../Brp';
-import BrpGameState from '../BrpGameState';
-import Brps from '../Brps';
+import english from '../../dictionaries/english';
+import Brp from './Brp';
+import BrpGameState from './BrpGameState';
+import Brps from './Brps';
 import calculatePoints from './calculatePoints';
 
 export default function submitGuess({
@@ -81,7 +81,7 @@ export default function submitGuess({
     newState.lastGuessOk = true;
     newState.lastGuessMessages = undefined;
 
-    if (newState.gameMode === 'flo') {
+    if (newState.gameMode === 'brp') {
         newState.counter--;
         let newBrp: Brp;
         do {

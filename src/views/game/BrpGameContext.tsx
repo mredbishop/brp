@@ -1,5 +1,5 @@
 import React from 'react';
-import BrpGameConfig from './BrpGameConfig';
+import BrpGameConfig from '../../lib/BrpGameEngine/BrpGameConfig';
 
 function createBrpGameContext<TContextType extends {} | null>() {
     const context = React.createContext<TContextType | undefined>(undefined);

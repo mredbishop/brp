@@ -9,10 +9,9 @@ import { SnackbarProvider } from 'notistack';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import theme from './Theme';
-import Brp from './views/game/brp/Brp';
-import Flo from './views/game/flo/Flo';
+import BrpGame from './views/game/BrpGame';
 import Home from './views/home/Home';
-import Team from './views/team/Team';
+import Team from './views/team/Who';
 
 // remove when https://github.com/iamhosseindhv/notistack/issues/440 fixed
 const Snackbar = styled(SnackbarProvider)`
@@ -44,8 +43,30 @@ const App = () => (
                         }
                     >
                         <Route path="/" element={<Home />} />
-                        <Route path="/brp" element={<Brp />} />
-                        <Route path="/flo" element={<Flo />} />
+                        <Route
+                            path="/brp"
+                            element={
+                                <BrpGame gameMode="brp" background="#ff0080" />
+                            }
+                        />
+                        <Route
+                            path="/flo"
+                            element={
+                                <BrpGame gameMode="flo" background="#a08800" />
+                            }
+                        />
+                        <Route
+                            path="/gro"
+                            element={
+                                <BrpGame gameMode="gro" background="#00970d" />
+                            }
+                        />
+                        <Route
+                            path="/kno"
+                            element={
+                                <BrpGame gameMode="kno" background="#0069be" />
+                            }
+                        />
                         <Route path="/team" element={<Team />} />
                         <Route
                             path="*"

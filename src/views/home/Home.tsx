@@ -57,9 +57,11 @@ const getColour = (colour: string): SxProps<Theme> => ({
 });
 
 const menuItems = [
-    { to: '/flo', text: 'BRP', colour: getColour('#007c0a') },
-    { to: '/brp', text: 'FLO', colour: getColour('#00559b') },
-    { to: '/team', text: 'TEAM', colour: getColour('#a10b00') }
+    { to: '/brp', text: 'BRP', colour: getColour('#ff0080') },
+    { to: '/flo', text: 'FLO', colour: getColour('#a08800') },
+    { to: '/gro', text: 'GRO', colour: getColour('#00970d') },
+    { to: '/kno', text: 'KNO', colour: getColour('#0069be') },
+    { to: '/team', text: 'TEAM', colour: getColour('#c56900') }
 ];
 
 const Home = () => {

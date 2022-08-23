@@ -1,13 +1,13 @@
 import { Box, styled, SxProps, Theme, Typography } from '@mui/material';
 import { SnackbarProps, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
+import BrpGameConfig from '../../lib/BrpGameEngine/BrpGameConfig';
+import startGame from '../../lib/BrpGameEngine/startGame';
+import submitGuess from '../../lib/BrpGameEngine/submitGuess';
 import log from '../../Logger';
-import Counter from './brp/Counter';
-import BrpGameConfig from './BrpGameConfig';
 import { BrpContextProvider } from './BrpGameContext';
-import startGame from './BrpGameEngine/startGame';
-import submitGuess from './BrpGameEngine/submitGuess';
 import CloseLink from './CloseLink';
+import Counter from './Counter';
 import LetterCard from './LetterCard';
 
 const snackProps: SnackbarProps = {

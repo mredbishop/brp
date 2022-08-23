@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import GlassCard from '../../components/cards/GlassCard';
+import BrpLetter from '../../lib/BrpGameEngine/BrpLetter';
 import { useBrpGameContext } from './BrpGameContext';
-import BrpLetter from './BrpLetter';
 
 type LetterCardConfig = { brpLetter: BrpLetter };
 

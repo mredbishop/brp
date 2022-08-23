@@ -1,5 +1,5 @@
-import Brp from '../Brp';
-import BrpLetter, { brpLetters } from '../BrpLetter';
+import Brp from './Brp';
+import BrpLetter, { brpLetters } from './BrpLetter';
 
 export default function calculatePoints(guess: string, brp: Brp) {
     if (!guess) { return 0; }

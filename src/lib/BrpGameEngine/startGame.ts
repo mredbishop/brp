@@ -1,6 +1,6 @@
-import BrpGameState from '../BrpGameState';
-import Brps from '../Brps';
-import GameMode from '../GameMode';
+import BrpGameState from './BrpGameState';
+import Brps from './Brps';
+import GameMode from './GameMode';
 
 export default function startGame({ gameMode }: { gameMode: GameMode; }) {
     const index = Math.ceil(Math.random() * 2000);
