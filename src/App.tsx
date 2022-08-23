@@ -12,7 +12,7 @@ import theme from './Theme';
 import Brp from './views/game/brp/Brp';
 import Flo from './views/game/flo/Flo';
 import Home from './views/home/Home';
-import Stats from './views/stats/Stats';
+import Team from './views/team/Team';
 
 // remove when https://github.com/iamhosseindhv/notistack/issues/440 fixed
 const Snackbar = styled(SnackbarProvider)`
@@ -45,8 +45,8 @@ const App = () => (
                     >
                         <Route path="/" element={<Home />} />
                         <Route path="/brp" element={<Brp />} />
-                        <Route path="/stats" element={<Stats />} />
                         <Route path="/flo" element={<Flo />} />
+                        <Route path="/team" element={<Team />} />
                         <Route
                             path="*"
                             element={
