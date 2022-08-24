@@ -82,7 +82,7 @@ const gradients = {
 const theme = responsiveFontSizes(
     createTheme({
         typography: {
-            fontFamily: 'Righteous,cursive'
+            fontFamily: 'Luckiest Guy'
         },
         gradients,
         glassCards: {

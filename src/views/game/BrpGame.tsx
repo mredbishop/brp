@@ -16,7 +16,7 @@ const snackProps: SnackbarProps = {
 
 const widthHeight = {
     xs: '100px',
-    md: '240px'
+    md: '120px'
 };
 
 const letterStyle: SxProps<Theme> = {
@@ -35,15 +35,15 @@ const guessInputSyle: SxProps<Theme> = {
     padding: '8px',
     width: {
         xs: '340px',
-        md: '800px'
+        md: '440px'
     },
     lineHeight: {
         xs: '22px',
-        md: '50px'
+        md: '38px'
     },
     fontSize: {
         xs: '22px',
-        md: '50px'
+        md: '38px'
     },
     textAlign: 'center',
     fontWeight: 600,
@@ -158,7 +158,7 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                 <CloseLink />
                 <Box sx={statsStyle}>
                     <Box sx={statsItemStyle}>
-                        <Typography sx={{ fontSize: '72px' }}>
+                        <Typography sx={{ fontSize: '34px' }}>
                             {brpGameState.points
                                 ? `${brpGameState.points} points`
                                 : 'Start'}
