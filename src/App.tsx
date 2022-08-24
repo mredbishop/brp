@@ -52,7 +52,7 @@ const App = () => (
                         <Route
                             path="/flo"
                             element={
-                                <BrpGame gameMode="flo" background="#d8c200" />
+                                <BrpGame gameMode="flo" background="#ffd900" />
                             }
                         />
                         <Route
