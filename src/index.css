@@ -8,3 +8,7 @@ body,
     user-select: none;
     -webkit-user-drag: none;
 }
+
+a {
+    -webkit-tap-highlight-color: transparent;
+}

@@ -14,7 +14,7 @@ const LetterCard = ({ brpLetter }: LetterCardConfig) => {
                     sx={{
                         fontWeight: 600,
                         fontSize: {
-                            xs: '70px',
+                            xs: '80px',
                             md: '96px'
                         },
                         textShadow: '-10px 10px 5px #000'

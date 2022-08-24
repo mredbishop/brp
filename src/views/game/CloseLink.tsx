@@ -3,10 +3,10 @@ import { MouseEventHandler } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const closeLinkStyle: SxProps<Theme> = {
-    position: 'relative',
-    left: '0',
+    position: 'absolute',
+    left: '2px',
+    top: '10px',
     display: 'inline',
-    marginLeft: '18px',
     a: {
         fontWeight: '600',
         textDecoration: 'none',

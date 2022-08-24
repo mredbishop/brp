@@ -14,13 +14,13 @@ const homeStyle: SxProps<Theme> = {
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        gap: '30px',
+        gap: '10px',
         li: {
             position: 'relative',
             listStyle: 'none',
             a: {
                 position: 'relative',
-                margin: '0 auto',
+                // margin: '0 auto',
                 fontSize: '64px',
                 fontWeight: 'bold',
                 textDecoration: 'none',
@@ -29,7 +29,7 @@ const homeStyle: SxProps<Theme> = {
                 textTransform: 'uppercase',
                 color: 'transparent',
                 WebkitTextStroke: '1px rgba(225, 225, 225, 0.5)',
-                paddingLeft: '21px',
+                padding: '14px 0 0 21px',
                 '&::before': {
                     content: 'attr(data-text)',
                     position: 'absolute',
@@ -41,7 +41,7 @@ const homeStyle: SxProps<Theme> = {
                     transition: 'all 400ms cubic-bezier(0, 0.63, 0.52, 1)',
                     borderLeft: '8px solid var(--item-colour)',
                     WebkitTextStroke: '1px var(--item-colour)',
-                    paddingLeft: '10px'
+                    padding: '14px 0 0 10px'
                 },
                 '&.active::before': {
                     width: '106%',
@@ -59,7 +59,7 @@ const getColour = (colour: string): SxProps<Theme> => ({
 
 const menuItems = [
     { to: '/brp', text: 'BRP', colour: getColour('#ff0080') },
-    { to: '/flo', text: 'FLO', colour: getColour('#a08800') },
+    { to: '/flo', text: 'FLO', colour: getColour('#d8c200') },
     { to: '/gro', text: 'GRO', colour: getColour('#00970d') },
     { to: '/kno', text: 'KNO', colour: getColour('#0069be') },
     { to: '/who', text: 'WHO', colour: getColour('#c56900') }

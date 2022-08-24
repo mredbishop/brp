@@ -26,6 +26,8 @@ const Who = () => {
         <Box id="teamContainer" sx={teamStyle}>
             <CloseLink />
             <Box>
+                <br />
+                <br />
                 <Typography variant="h3">The BRP Team</Typography>
                 <br />
                 <Typography variant="h4">Coding</Typography>
