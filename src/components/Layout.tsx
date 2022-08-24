@@ -9,9 +9,10 @@ export const Layout: FC<LayoutProps> = ({ children }) => (
     <Box
         sx={{
             position: 'relative',
-            width: '100%',
+            maxWidth: '832px',
             height: '100%',
-            textAlign: 'center'
+            textAlign: 'center',
+            margin: '0 auto'
         }}
     >
         <Box

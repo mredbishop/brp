@@ -20,6 +20,7 @@ const homeStyle: SxProps<Theme> = {
             listStyle: 'none',
             a: {
                 position: 'relative',
+                margin: '0 auto',
                 fontSize: '72px',
                 fontWeight: 'bold',
                 textDecoration: 'none',
