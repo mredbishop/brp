@@ -55,7 +55,8 @@ const guessInputSyle: SxProps<Theme> = {
 };
 
 const statsStyle: SxProps<Theme> = {
-    margin: '20px'
+    margin: '20px',
+    minHeight: '50px'
 };
 
 const statsItemStyle: SxProps<Theme> = {
@@ -158,29 +159,40 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                 <CloseLink />
                 <Box sx={statsStyle}>
                     <Box sx={statsItemStyle}>
-                        <Typography sx={{ fontSize: '34px' }}>
-                            {brpGameState.points
-                                ? `${brpGameState.points} points`
-                                : 'Start'}
-                        </Typography>
+                        {brpGameState.finished ? null : (
+                            <Typography sx={{ fontSize: '34px' }}>
+                                {brpGameState.points
+                                    ? `${brpGameState.points} points`
+                                    : 'Start'}
+                            </Typography>
+                        )}
                     </Box>
                 </Box>
 
-                <Box>
-                    <GuessInput
-                        sx={guessInputSyle}
-                        ref={guessInput}
-                        type="text"
-                        value={guess}
-                        onChange={change}
-                        onKeyDown={keyDown}
-                        onKeyUp={keyUp}
-                    />
-                </Box>
+                {brpGameState.finished ? null : (
+                    <Box>
+                        <GuessInput
+                            sx={guessInputSyle}
+                            ref={guessInput}
+                            type="text"
+                            value={guess}
+                            onChange={change}
+                            onKeyDown={keyDown}
+                            onKeyUp={keyUp}
+                            disabled={brpGameState.finished}
+                        />
+                    </Box>
+                )}
                 <Box sx={{ margin: '20px 0' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Box sx={letterStyle}>
-                            <LetterCard brpLetter={brpGameState.brp[0]} />
+                            <LetterCard
+                                text={
+                                    brpGameState.finished
+                                        ? brpGameState.finalScore?.[0] || 0
+                                        : brpGameState.brp[0]
+                                }
+                            />
                         </Box>
                         <Box
                             sx={{
@@ -195,16 +207,34 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                                 }
                             }}
                         >
-                            <LetterCard brpLetter={brpGameState.brp[1]} />
+                            <LetterCard
+                                text={
+                                    brpGameState.finished
+                                        ? brpGameState.finalScore?.[1] || 0
+                                        : brpGameState.brp[1]
+                                }
+                            />
                         </Box>
                         <Box sx={letterStyle}>
-                            <LetterCard brpLetter={brpGameState.brp[2]} />
+                            <LetterCard
+                                text={
+                                    brpGameState.finished
+                                        ? brpGameState.finalScore?.[2] || 0
+                                        : brpGameState.brp[2]
+                                }
+                            />
                         </Box>
                     </Box>
                 </Box>
                 <Box sx={statsStyle}>
                     <Box sx={statsItemStyle}>
-                        <Counter counter={brpGameState.counter} />
+                        {brpGameState.finished ? (
+                            <Typography sx={{ fontSize: '34px' }}>
+                                GAME OVER!
+                            </Typography>
+                        ) : (
+                            <Counter counter={brpGameState.counter} />
+                        )}
                     </Box>
                 </Box>
             </BrpContextProvider>

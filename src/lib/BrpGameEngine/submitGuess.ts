@@ -1,8 +1,7 @@
 import english from '../../dictionaries/english';
-import Brp from './Brp';
 import BrpGameState from './BrpGameState';
-import Brps from './Brps';
 import calculatePoints from './calculatePoints';
+import rules from './rules/rules';
 
 export default function submitGuess({
     gameMode, brp, answers, points, lastGuess, guesses, counter, finished
@@ -81,19 +80,10 @@ export default function submitGuess({
     newState.lastGuessOk = true;
     newState.lastGuessMessages = undefined;
 
-    if (newState.gameMode === 'brp') {
-        newState.counter--;
-        let newBrp: Brp;
-        do {
-            const index = Math.ceil(Math.random() * 2000);
-            [newBrp] = Brps.all[index];
-        } while (newBrp === newState.brp);
+    const scoreText = newState.points.toString();
+    newState.finalScore = [Number(scoreText.slice(-3, -2)), Number(scoreText.slice(-2, -1)), Number(scoreText.slice(-1))];
 
-        newState.brp = newBrp;
-        if (counter <= 0) {
-            newState.finished = true;
-        }
-    }
+    const finalState = rules[newState.gameMode](newState);
 
-    return newState;
+    return finalState;
 }

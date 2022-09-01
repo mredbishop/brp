@@ -2,6 +2,7 @@ import Brp from './Brp';
 import GameMode from './GameMode';
 
 type BrpGameState = {
+    finalScore?: [number, number, number];
     gameMode: GameMode;
     brp: Brp;
     answers: Array<{ word: string, brp: Brp, points: number }>;

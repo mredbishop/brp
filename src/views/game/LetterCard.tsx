@@ -3,10 +3,11 @@ import GlassCard from '../../components/cards/GlassCard';
 import BrpLetter from '../../lib/BrpGameEngine/BrpLetter';
 import { useBrpGameContext } from './BrpGameContext';
 
-type LetterCardConfig = { brpLetter: BrpLetter };
+type LetterCardConfig = { text: number | BrpLetter };
 
-const LetterCard = ({ brpLetter }: LetterCardConfig) => {
+const LetterCard = ({ text }: LetterCardConfig) => {
     const { background } = useBrpGameContext();
+
     return (
         <GlassCard background={background}>
             <Box sx={{ textAlign: 'center' }}>
@@ -20,7 +21,7 @@ const LetterCard = ({ brpLetter }: LetterCardConfig) => {
                         textShadow: '-10px 10px 5px #000'
                     }}
                 >
-                    {brpLetter}
+                    {text}
                 </Typography>
             </Box>
         </GlassCard>
