@@ -237,6 +237,11 @@ const BrpGame = ({ gameMode, background }: BrpGameConfig) => {
                         )}
                     </Box>
                 </Box>
+                {brpGameState.answers?.map((a) => (
+                    <Typography key={a.word} sx={{ fontSize: '24px' }}>
+                        {`${a.word} (${a.points})`}
+                    </Typography>
+                ))}
             </BrpContextProvider>
         </Box>
     );
