@@ -15,8 +15,8 @@ const LetterCard = ({ text }: LetterCardConfig) => {
                     sx={{
                         fontWeight: 600,
                         fontSize: {
-                            xs: '80px',
-                            md: '96px'
+                            xs: '64px',
+                            md: '80px'
                         },
                         textShadow: '-10px 10px 5px #000'
                     }}

@@ -10,7 +10,7 @@ const homeStyle: SxProps<Theme> = {
         },
         left: '-100vw',
         transition: 'all 400ms cubic-bezier(0, 0.37, 0.48, 1)',
-        fontFamily: 'Luckiest Guy',
+        fontFamily: 'Rubik',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
